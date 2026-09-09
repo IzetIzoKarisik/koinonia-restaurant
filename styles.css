@@ -502,18 +502,6 @@ a.card:hover .card__more svg { transform: translateX(4px); }
 .menu-block__head h2 { margin: 0; font-size: clamp(1.6rem, 1.3rem + 1.2vw, 2.3rem); }
 .menu-block__note { margin: -1.2rem 0 2rem; color: var(--muted); font-size: .9rem; }
 
-.scan-link {
-  display: inline-flex; align-items: center; gap: .5rem; flex: none;
-  background: none; cursor: pointer;
-  border: 1px solid var(--line); border-radius: 100px;
-  padding: .45rem .9rem;
-  font-family: var(--font-body); font-size: .68rem; font-weight: 600;
-  letter-spacing: .13em; text-transform: uppercase; color: var(--muted);
-  transition: color .25s var(--ease), border-color .25s var(--ease);
-}
-.scan-link svg { width: 14px; height: 14px; }
-.scan-link:hover { color: var(--accent); border-color: var(--accent); }
-
 .dishes { display: grid; gap: 1.7rem; }
 /* Name and price on one line, joined by a dotted leader like a printed card. */
 .dish__row { display: flex; align-items: baseline; gap: .7rem; }
