@@ -63,31 +63,181 @@
 
   <section class="section">
     <div class="wrap">
-      <div class="menu-grid">
-      <button type="button" class="menu-card menu-card--wide reveal"
-              data-full="assets/menu/mittagsmenue.jpg" data-title="Mittagsmenü" data-en-data-title="Lunch Menu">
-        <span class="menu-card__img">
-          <img src="assets/menu/thumbs/mittagsmenue.jpg" alt="Kartenseite: Mittagsmenü" data-en-alt="Menu page: Lunch Menu" loading="lazy" decoding="async">
-          <span class="menu-card__zoom" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg></span>
-        </span>
-        <span class="menu-card__body">
-          <h3 data-en="Lunch Menu">Mittagsmenü</h3>
-          <p data-en="The current lunch menu at Koinonia">Die aktuelle Mittagskarte des Koinonia</p>
-        </span>
-      </button>
-      <button type="button" class="menu-card reveal"
-              data-full="assets/menu/07-menues.jpg" data-title="Menüs à la carte" data-en-data-title="Set Menus à la Carte">
-        <span class="menu-card__img">
-          <img src="assets/menu/thumbs/07-menues.jpg" alt="Kartenseite: Menüs à la carte" data-en-alt="Menu page: Set Menus à la Carte" loading="lazy" decoding="async">
-          <span class="menu-card__zoom" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg></span>
-        </span>
-        <span class="menu-card__body">
-          <h3 data-en="Set Menus à la Carte">Menüs à la carte</h3>
-          <p data-en="Multi-course menus, available all day">Mehrgängige Menüs, ganztägig erhältlich</p>
-        </span>
-      </button>
-      </div>
-      <p class="lede" style="margin-top:2.5rem;font-size:.92rem" data-en="The lunch menu is served Monday to Friday from 11:30 to 15:00, except on public holidays. Subject to change – the menu in the restaurant applies.">Das Mittagsmenü erhalten Sie Montag bis Freitag von 11:30 bis 15:00 Uhr, ausgenommen an Feiertagen. Änderungen vorbehalten – maßgeblich ist die Karte im Lokal.</p>
+      <section class="menu-block reveal" id="mittagsmenue">
+        <div class="menu-block__head">
+          <h2 data-en="Lunch Menu">Mittagsmenü</h2>
+          <button type="button" class="scan-link" data-full="assets/menu/mittagsmenue.jpg" data-title="Mittagsmenü" data-en-data-title="Lunch Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg><span data-en="Original card">Originalkarte</span></button>
+        </div>
+        <p class="menu-block__note" data-en="Mon–Fri 11:30–15:00, except public holidays · Lunch menu with espresso + 2,00 or cake + 3,50 · Our staff will gladly tell you about the allergens.">Mo–Fr 11:30–15:00, außer Feiertage · Mittagsmenü mit Espresso + 2,00 oder Torte + 3,50 · Unser Personal informiert Sie über die Allergene.</p>
+        <ul class="dishes">
+        <li class="dish">
+          <div class="dish__row">
+            <h3 class="dish__name">1. Sushi Bento</h3>
+            <span class="dish__lead" aria-hidden="true"></span>
+            <span class="dish__price">13,50</span>
+          </div>
+          <p class="dish__desc"><span data-en="5 pcs sushi, sashimi, maki">5 St. Sushi, Sashimi, Maki</span> <span class="dish__aller" aria-label="Allergene: A B D N" data-en-aria-label="Allergens: A B D N">A B D N</span></p>
+        </li>
+        <li class="dish">
+          <div class="dish__row">
+            <h3 class="dish__name">2. Sushi Set</h3>
+            <span class="dish__lead" aria-hidden="true"></span>
+            <span class="dish__price">11,50</span>
+          </div>
+          <p class="dish__desc"><span data-en="5 pcs sushi, 3 pcs maki">5 St. Sushi, 3 St. Maki</span> <span class="dish__aller" aria-label="Allergene: B D" data-en-aria-label="Allergens: B D">B D</span></p>
+        </li>
+        <li class="dish">
+          <div class="dish__row">
+            <h3 class="dish__name">3. Maki Bento</h3>
+            <span class="dish__lead" aria-hidden="true"></span>
+            <span class="dish__price">12,50</span>
+          </div>
+          <p class="dish__desc"><span data-en="assorted maki">verschiedene Makis</span> <span class="dish__aller" aria-label="Allergene: D N" data-en-aria-label="Allergens: D N">D N</span></p>
+        </li>
+        <li class="dish">
+          <div class="dish__row">
+            <h3 class="dish__name" data-en="4. Luxury Bento">4. Luxus Bento</h3>
+            <span class="dish__lead" aria-hidden="true"></span>
+            <span class="dish__price">15,00</span>
+          </div>
+          <p class="dish__desc"><span data-en="5 pcs sushi, tempura, glass noodles with beef and vegetables">5 St. Sushi, Tempura, Glasnudeln mit Rindfleisch und Gemüse</span> <span class="dish__aller" aria-label="Allergene: A B D F N" data-en-aria-label="Allergens: A B D F N">A B D F N</span></p>
+        </li>
+        <li class="dish">
+          <div class="dish__row">
+            <h3 class="dish__name">5. Bulgogi Bento</h3>
+            <span class="dish__lead" aria-hidden="true"></span>
+            <span class="dish__price">13,50</span>
+          </div>
+          <p class="dish__desc"><span data-en="finely fried marinated beef with 2 pcs sushi and 3 pcs maki">mariniertes Rindfleisch fein gebraten und 2 St. Sushi, 3 St. Maki</span> <span class="dish__aller" aria-label="Allergene: A D F N" data-en-aria-label="Allergens: A D F N">A D F N</span></p>
+        </li>
+        <li class="dish">
+          <div class="dish__row">
+            <h3 class="dish__name" data-en="6. Salmon Teriyaki Bento">6. Lachs Teriyaki Bento</h3>
+            <span class="dish__lead" aria-hidden="true"></span>
+            <span class="dish__price">13,50</span>
+          </div>
+          <p class="dish__desc"><span data-en="grilled salmon with vegetables, 2 pcs sushi and 3 pcs maki">gegrillter Lachs mit Gemüse und 2 St. Sushi, 3 St. Maki</span> <span class="dish__aller" aria-label="Allergene: A D F N" data-en-aria-label="Allergens: A D F N">A D F N</span></p>
+        </li>
+        <li class="dish">
+          <div class="dish__row">
+            <h3 class="dish__name">7. Tori Teriyaki Bento</h3>
+            <span class="dish__lead" aria-hidden="true"></span>
+            <span class="dish__price">12,50</span>
+          </div>
+          <p class="dish__desc"><span data-en="grilled chicken with vegetables, 2 pcs sushi and 3 pcs maki">gegrilltes Hühnerfleisch mit Gemüse und 2 St. Sushi, 3 St. Maki</span> <span class="dish__aller" aria-label="Allergene: A D F N" data-en-aria-label="Allergens: A D F N">A D F N</span></p>
+        </li>
+        <li class="dish">
+          <div class="dish__row">
+            <h3 class="dish__name">8. Yaki Soba</h3>
+            <span class="dish__lead" aria-hidden="true"></span>
+            <span class="dish__price">10,90</span>
+          </div>
+          <p class="dish__desc"><span data-en="noodles finely fried with chicken and vegetables">Nudeln mit Hühnerfleisch und Gemüse feingebraten</span> <span class="dish__aller" aria-label="Allergene: A F N" data-en-aria-label="Allergens: A F N">A F N</span></p>
+        </li>
+        <li class="dish">
+          <div class="dish__row">
+            <h3 class="dish__name">9. Ramen</h3>
+            <span class="dish__lead" aria-hidden="true"></span>
+            <span class="dish__price">10,90</span>
+          </div>
+          <p class="dish__desc"><span data-en="noodle soup with chicken and egg">Nudelsuppe mit Hühnerfleisch, Ei</span> <span class="dish__aller" aria-label="Allergene: A C F" data-en-aria-label="Allergens: A C F">A C F</span></p>
+        </li>
+        <li class="dish">
+          <div class="dish__row">
+            <h3 class="dish__name" data-en="10. Duck">10. Ente</h3>
+            <span class="dish__lead" aria-hidden="true"></span>
+            <span class="dish__price">12,50</span>
+          </div>
+          <p class="dish__desc"><span data-en="crispy fried duck with vegetables and teriyaki sauce">knusprig frittierte Enten mit Gemüse und Teriyaki Sauce</span> <span class="dish__aller" aria-label="Allergene: A F N" data-en-aria-label="Allergens: A F N">A F N</span></p>
+        </li>
+        <li class="dish">
+          <div class="dish__row">
+            <h3 class="dish__name" data-en="11. Menu of the Day">11. Tagesmenü</h3>
+            <span class="dish__lead" aria-hidden="true"></span>
+            <span class="dish__price">13,50</span>
+          </div>
+          <p class="dish__desc"><span data-en="Please ask in advance">Bitte! Vorheranfragen</span></p>
+        </li>
+        </ul>
+      </section>
+      <section class="menu-block reveal" id="menues">
+        <div class="menu-block__head">
+          <h2 data-en="Set Menus for 2 People">Menüs für 2 Personen</h2>
+          <button type="button" class="scan-link" data-full="assets/menu/07-menues.jpg" data-title="Menüs" data-en-data-title="Set Menus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg><span data-en="Original card">Originalkarte</span></button>
+        </div>
+        <p class="menu-block__note" data-en="We are happy to take your set-menu order until 21:20.">Gerne nehmen wir Ihre Menübestellung bis 21:20 an.</p>
+        <div class="set-menus">
+          <article class="set-menu">
+            <div class="dish__row">
+              <h3 class="dish__name" data-en="Set Menu 1">Menü 1</h3>
+              <span class="dish__lead" aria-hidden="true"></span>
+              <span class="dish__price">48,00</span>
+            </div>
+            <dl class="courses">
+              <dt data-en="Soup">Suppe</dt>
+              <dd data-en="2 × spinach soup (A D F) — spinach with soybean paste">2 × Spinatsuppe (A D F) — Spinat mit Bohnenpaste</dd>
+              <dt data-en="Starters">Vorspeisen</dt>
+              <dd data-en="Agetofu and Seafood Chilli (A B D F N R) — deep-fried tofu; seafood fried in a spicy sauce · 4 pcs sushi, 6 pcs sashimi, 6 pcs maki (B D N)">Agetofu und Seafood Chilli (A B D F N R) — Gebackener Tofu; Meeresfrüchte mit scharfer Sauce gebraten · 4 St. Sushi, 6 St. Sashimi, 6 St. Maki (B D N)</dd>
+              <dt data-en="Main course">Hauptspeise</dt>
+              <dd data-en="Thai Chicken Curry (A D) — chicken with courgette, coconut milk, bamboo shoots, lemongrass and basil in red curry (spicy)">Thai Chicken Curry (A D) — Hühnerfleisch mit Zucchini, Kokosmilch, Bambussprossen, Zitronengras und Basilikum in rotem Curry (scharf)</dd>
+              <dt data-en="Dessert">Dessert’s</dt>
+              <dd data-en="Your choice of cake, or lychee or mango">Wahlweise Torte oder Lychee, Mango</dd>
+            </dl>
+          </article>
+          <article class="set-menu">
+            <div class="dish__row">
+              <h3 class="dish__name" data-en="Set Menu 2">Menü 2</h3>
+              <span class="dish__lead" aria-hidden="true"></span>
+              <span class="dish__price">50,00</span>
+            </div>
+            <dl class="courses">
+              <dt data-en="Soup">Suppe</dt>
+              <dd data-en="2 × miso soup (A D)">2 × Misosuppe (A D)</dd>
+              <dt data-en="Starters">Vorspeisen</dt>
+              <dd data-en="Leaf salad and Yaki Kyoza (A F N) — dumplings filled with meat and vegetables · 4 pcs Tempura Roll, 4 pcs Mini California Roll, 4 pcs Hot Tuna Roll (A B C D M N) — crispy fried prawns rolled in rice and sesame; prawns and avocado rolled in rice, sesame and fish roe; marinated tuna and cucumber rolled in rice">Blatt Salat und Yaki Kyoza (A F N) — gefüllte Teigtaschen mit Fleisch und Gemüse · 4 St. Tempura Roll, 4 St. Mini California Roll, 4 St. Hot Tuna Roll (A B C D M N) — knusprig frittierte Garnelen in Reis und Sesam gerollt; Garnelen und Avocado in Reis, Sesam und Fischeier gerollt; marinierter Thunfisch und Gurken in Reis gerollt</dd>
+              <dt data-en="Main course">Hauptspeise</dt>
+              <dd data-en="Salmon Teriyaki (A D F N) — salmon grilled in teriyaki sauce with vegetables">Lachs Teriyaki (A D F N) — Lachs in Teriyakisauce gegrillt mit Gemüse</dd>
+              <dt data-en="Dessert">Dessert’s</dt>
+              <dd data-en="Your choice of cake, or lychee or mango">Wahlweise Torte oder Lychee, Mango</dd>
+            </dl>
+          </article>
+          <article class="set-menu">
+            <div class="dish__row">
+              <h3 class="dish__name" data-en="Set Menu 3">Menü 3</h3>
+              <span class="dish__lead" aria-hidden="true"></span>
+              <span class="dish__price">52,00</span>
+            </div>
+            <dl class="courses">
+              <dt data-en="Soup">Suppe</dt>
+              <dd data-en="2 × Tom Ka Gai (A) — creamy coconut soup with mushrooms, spring onion and chicken">2 × Tom Ka Gai (A) — cremige Kokonusssuppe mit Champignon, Jungzwiebel und Hühnerfleisch</dd>
+              <dt data-en="Starters">Vorspeisen</dt>
+              <dd data-en="Tempura (A B F) — crispy fried prawns and vegetables · Yaki Tori (A F M N) — chicken skewers · 4 pcs sushi, 6 pcs sashimi, 6 pcs maki (B D N)">Tempura (A B F) — knusprig frittierte Garnelen und Gemüse · Yaki Tori (A F M N) — Hühnerspießchen · 4 St. Sushi, 6 St. Sashimi, 6 St. Maki (B D N)</dd>
+              <dt data-en="Main course">Hauptspeise</dt>
+              <dd data-en="Bulgogi (A F N) — thinly sliced beef, Korean style, fried with vegetables">Bulgogi (A F N) — dünn geschnittener Rostbraten auf koreanische Art, mit Gemüse gebraten</dd>
+              <dt data-en="Dessert">Dessert’s</dt>
+              <dd data-en="Your choice of cake, or lychee or mango">Wahlweise Torte oder Lychee, Mango</dd>
+            </dl>
+          </article>
+          <article class="set-menu">
+            <div class="dish__row">
+              <h3 class="dish__name" data-en="Set Menu 4">Menü 4</h3>
+              <span class="dish__lead" aria-hidden="true"></span>
+              <span class="dish__price">57,00</span>
+            </div>
+            <dl class="courses">
+              <dt data-en="Soup">Suppe</dt>
+              <dd>2 × Tom Yam Kung (A B)</dd>
+              <dt data-en="Starters">Vorspeisen</dt>
+              <dd data-en="Prawn salad (A B C F M N) — crispy fried prawns on a colourful salad · 4 pcs Hot Tuna Roll, 4 pcs Hawaiian Roll (A B C D E N) — spicy marinated tuna and cucumber rolled in rice and sesame; marinated crab meat and avocado rolled in rice, sesame, tuna and avocado · 4 pcs sushi, 6 pcs sashimi, 6 pcs maki (B D N)">Garnelen Salat (A B C F M N) — knusprig frittierte Garnelen auf buntem Salat · 4 St. Hot Tuna Roll, 4 St. Hawaiian Roll (A B C D E N) — scharf marinierter Thunfisch und Gurken in Reis, Sesam gerollt; mariniertes Krabbenfleisch und Avocado in Reis, Sesam, Thunfisch und Avocado gerollt · 4 St. Sushi, 6 St. Sashimi, 6 St. Maki (B D N)</dd>
+              <dt data-en="Main course">Hauptspeise</dt>
+              <dd data-en="Seafood Curry (A B D R) — seafood, bamboo shoots, courgette and basil in red curry">Seafood Curry (A B D R) — Meeresfrüchte, Bambussprossen, Zucchini und Basilikum in rotem Curry</dd>
+              <dt data-en="Dessert">Dessert’s</dt>
+              <dd data-en="Your choice of cake, or lychee or mango">Wahlweise Torte oder Lychee, Mango</dd>
+            </dl>
+          </article>
+        </div>
+      </section>
+      <p class="menu-foot" data-en="All prices in euros, including taxes and duties. Subject to change and printing errors – the printed card in the restaurant applies. The English text is a translation for guidance; please ask us if anything is unclear.">Alle Preise in Euro inklusive Steuern und Abgaben. Änderungen und Druckfehler vorbehalten – maßgeblich ist die Karte im Lokal.</p>
     </div>
   </section>
 

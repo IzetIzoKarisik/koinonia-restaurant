@@ -57,59 +57,476 @@
     <div class="wrap">
       <p class="eyebrow eyebrow--center" data-en="From the Cellar">Aus dem Keller</p>
       <h1 data-en="Wines &amp; Drinks">Weine &amp; Getränke</h1>
-      <p data-en="Austrian and international wines, alongside sake, beer and tea – chosen to complement our kitchen.">Österreichische und internationale Weine, dazu Sake, Bier und Tee – abgestimmt auf unsere Küche.</p>
+      <p data-en="Austrian and international wines, alongside sake, beer and tea – chosen to complement our kitchen. We are glad to advise you in person.">Österreichische und internationale Weine, dazu Sake, Bier und Tee – abgestimmt auf unsere Küche. Gerne beraten wir Sie im Lokal persönlich.</p>
     </div>
   </section>
 
   <section class="section">
     <div class="wrap">
-      <div class="menu-grid">
-      <button type="button" class="menu-card reveal"
-              data-full="assets/menu/weinkarte-1.png" data-title="Weinkarte, Seite 1" data-en-data-title="Wine List, Page 1">
-        <span class="menu-card__img">
-          <img src="assets/menu/thumbs/weinkarte-1.jpg" alt="Kartenseite: Weinkarte, Seite 1" data-en-alt="Menu page: Wine List, Page 1" loading="lazy" decoding="async">
-          <span class="menu-card__zoom" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg></span>
-        </span>
-        <span class="menu-card__body">
-          <h3 data-en="Wine List, Page 1">Weinkarte, Seite 1</h3>
-          <p data-en="White and sparkling wines">Weißweine und Schaumweine</p>
-        </span>
-      </button>
-      <button type="button" class="menu-card reveal"
-              data-full="assets/menu/weinkarte-2.png" data-title="Weinkarte, Seite 2" data-en-data-title="Wine List, Page 2">
-        <span class="menu-card__img">
-          <img src="assets/menu/thumbs/weinkarte-2.jpg" alt="Kartenseite: Weinkarte, Seite 2" data-en-alt="Menu page: Wine List, Page 2" loading="lazy" decoding="async">
-          <span class="menu-card__zoom" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg></span>
-        </span>
-        <span class="menu-card__body">
-          <h3 data-en="Wine List, Page 2">Weinkarte, Seite 2</h3>
-          <p data-en="Red and sweet wines">Rotweine und Süßweine</p>
-        </span>
-      </button>
-      <button type="button" class="menu-card reveal"
-              data-full="assets/menu/10-wein-shots.jpg" data-title="Offene Weine &amp; Shots" data-en-data-title="Wines by the Glass &amp; Shots">
-        <span class="menu-card__img">
-          <img src="assets/menu/thumbs/10-wein-shots.jpg" alt="Kartenseite: Offene Weine &amp; Shots" data-en-alt="Menu page: Wines by the Glass &amp; Shots" loading="lazy" decoding="async">
-          <span class="menu-card__zoom" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg></span>
-        </span>
-        <span class="menu-card__body">
-          <h3 data-en="Wines by the Glass &amp; Shots">Offene Weine &amp; Shots</h3>
-          <p data-en="Wines by the glass, sake and spirits">Glasweise Weine, Sake und Spirituosen</p>
-        </span>
-      </button>
-      <button type="button" class="menu-card reveal"
-              data-full="assets/menu/11-tee-bier.jpg" data-title="Tee &amp; Bier" data-en-data-title="Tea &amp; Beer">
-        <span class="menu-card__img">
-          <img src="assets/menu/thumbs/11-tee-bier.jpg" alt="Kartenseite: Tee &amp; Bier" data-en-alt="Menu page: Tea &amp; Beer" loading="lazy" decoding="async">
-          <span class="menu-card__zoom" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg></span>
-        </span>
-        <span class="menu-card__body">
-          <h3 data-en="Tea &amp; Beer">Tee &amp; Bier</h3>
-          <p data-en="Green tea, draught and bottled beer">Grüner Tee, Bier vom Fass und in Flaschen</p>
-        </span>
-      </button>
-      </div>
-      <p class="lede" style="margin-top:2.5rem;font-size:.92rem" data-en="An extract from our wine list. We are happy to advise you in person on the right pairing for your meal.">Auszug aus unserer Weinkarte. Gerne beraten wir Sie im Lokal persönlich zur passenden Begleitung Ihres Menüs.</p>
+      <nav class="menu-jump" aria-label="Abschnitte der Karte" data-en-aria-label="Menu sections">
+        <a href="#weiss" data-en="White Wines by the Bottle · 0.75 l">Flaschenweine weiß · 0,75 l</a>
+        <a href="#rot" data-en="Red Wines by the Bottle · 0.75 l">Flaschenweine rot · 0,75 l</a>
+        <a href="#schankweine" data-en="Wines by the Glass">Schankweine</a>
+        <a href="#shots">Shots</a>
+        <a href="#long-drinks">Long Drinks</a>
+        <a href="#tee" data-en="Tea">Tee</a>
+        <a href="#bier" data-en="Beer">Bier</a>
+      </nav>
+      <section class="menu-block reveal" id="weiss">
+        <div class="menu-block__head">
+          <h2 data-en="White Wines by the Bottle · 0.75 l">Flaschenweine weiß · 0,75 l</h2>
+          <button type="button" class="scan-link" data-full="assets/menu/weinkarte-1.png" data-title="Weinkarte, Seite 1" data-en-data-title="Wine List, Page 1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg><span data-en="Original card">Originalkarte</span></button>
+        </div>
+        <p class="menu-block__note" data-en="Bottle / 1/8">Flasche / 1/8</p>
+        <ul class="dishes dishes--wine">
+        <li class="dish">
+          <div class="dish__row">
+            <h3 class="dish__name">Grüner Veltliner Federspiel</h3>
+            <span class="dish__lead" aria-hidden="true"></span>
+            <span class="dish__price">19,50 / 3,60</span>
+          </div>
+          <p class="dish__origin">Loibenberg · Domäne Wachau, Dürnstein</p>
+          <p class="dish__desc" data-en="Medium straw yellow, pronounced and open on the nose; aromas of yellow apple, a little tobacco and spice, with a delicate exotic note as well. Typically for a Loibenberg, this Federspiel is relatively supple and full, yet the acidity balances it perfectly. An elegant finish.">Mittleres Strohgelb, ausgeprägt und offen im Geruch; Aromen nach gelbem Apfel, etwas Tabak und Würze, aber auch zarte Exotik ist wahrnehmbar. Typisch für einen Loibenberg ist dieses Federspiel relativ schmelzig und gehaltvoll, doch balanciert die Säure den Wein perfekt aus. Eleganter Abgang.</p>
+        </li>
+        <li class="dish">
+          <div class="dish__row">
+            <h3 class="dish__name">Grüner Veltliner</h3>
+            <span class="dish__lead" aria-hidden="true"></span>
+            <span class="dish__price">20,50 / 3,80</span>
+          </div>
+          <p class="dish__origin">Gebling · Weingut Buchegger, Gedersdorf/Kremstal</p>
+          <p class="dish__desc" data-en="“Juicy, dense, richly textured and supple, very spicy, long, multi-layered, exciting and highly elegant” — Vinaria review!">„Saftig, dicht, viel Schmalz und Schmelz, sehr würzig, lang, vielschichtig, spannend und hochelegant“ — Vinaria-Bewertung!</p>
+        </li>
+        <li class="dish">
+          <div class="dish__row">
+            <h3 class="dish__name">Riesling</h3>
+            <span class="dish__lead" aria-hidden="true"></span>
+            <span class="dish__price">20,50 / 3,80</span>
+          </div>
+          <p class="dish__origin">Gaisberg · Weingut Birgit Eichinger, Strass</p>
+          <p class="dish__desc" data-en="A delicately vegetal bouquet of peonies and mandarins, almost shy at first, then endlessly generous on the palate; very juicy, with a fine drinking flow, fine lines, harmonious and exemplary. A lovely companion to light cooking.">Zart vegetales Duftkleid; Pfingstrosen und Mandarinen, zu Beginn fast verschämt, gibt am Gaumen unendlich Stoff, sehr saftig, offeriert dadurch feinen Trinkfluss, feine Linien, harmonisch, modellhaft. Schöner Speisebegleiter zur leichten Küche.</p>
+        </li>
+        <li class="dish">
+          <div class="dish__row">
+            <h3 class="dish__name">Sauvignon Blanc Klassik</h3>
+            <span class="dish__lead" aria-hidden="true"></span>
+            <span class="dish__price">22,70 / 4,20</span>
+          </div>
+          <p class="dish__origin">Weingut Hannes Sabathi, Gamlitz/Südsteiermark</p>
+          <p class="dish__desc" data-en="Pale yellow-green, a classic play of aromas: gooseberry, blackcurrant leaf, plenty of spice and fine white blossom notes. Refreshing on the palate, very fruit-forward and juicy, clearly true to type, finishing spicy with a long echo.">Helles Gelbgrün, klassisches Aromenspiel, Stachelbeere, Ribiselblätter, viel Würze und feine weiße Blütenanklänge, erfrischend am Gaumen, sehr fruchtbetont, saftig, klare Sortentypizität, würzig ausklingend, langer Nachhall.</p>
+        </li>
+        <li class="dish">
+          <div class="dish__row">
+            <h3 class="dish__name">Grüner Veltliner</h3>
+            <span class="dish__lead" aria-hidden="true"></span>
+            <span class="dish__price">29,50</span>
+          </div>
+          <p class="dish__origin">Tradition · Weingut Schloß Gobelsburg, Langenlois</p>
+          <p class="dish__desc" data-en="An almost nostalgic bouquet with hints of beeswax and summer straw, showing some tannin too; chocolatey and finely bitter, threaded with delicate herbal spice, still yeasty and youthful — a successful reminiscence of bygone traditions of maturation. Round and appealing in every respect, it seems to develop only in slow motion.">Geradezu nostalgisch anmutendes Bukett mit Anklängen von Bienenwachs und Sommerstroh, zeigt auch etwas Tannin; schokoladig und feinherb, von feiner Kräuterwürze durchzogen, noch hefig und jung erhalten, eine gelungene Reminiszenz an „vergangene“ Ausbautraditionen, rund und in jeder Hinsicht sympathisch, scheint sich nur im Zeitlupentempo zu entwickeln.</p>
+        </li>
+        <li class="dish">
+          <div class="dish__row">
+            <h3 class="dish__name">Sauvignon Blanc</h3>
+            <span class="dish__lead" aria-hidden="true"></span>
+            <span class="dish__price">42,00</span>
+          </div>
+          <p class="dish__origin">Ried Welles · Weingut Lackner-Tinnacher, Gamlitz</p>
+          <p class="dish__desc" data-en="A rich, spicy bouquet on the palate, of blackcurrant, mineral.">Reichhaltig-würziges Bukett am Gaumen, nach Johannisbeere, mineralisch.</p>
+        </li>
+        </ul>
+      </section>
+      <section class="menu-block reveal" id="rot">
+        <div class="menu-block__head">
+          <h2 data-en="Red Wines by the Bottle · 0.75 l">Flaschenweine rot · 0,75 l</h2>
+          <button type="button" class="scan-link" data-full="assets/menu/weinkarte-2.png" data-title="Weinkarte, Seite 2" data-en-data-title="Wine List, Page 2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg><span data-en="Original card">Originalkarte</span></button>
+        </div>
+        <p class="menu-block__note" data-en="Bottle / 1/8">Flasche / 1/8</p>
+        <ul class="dishes dishes--wine">
+        <li class="dish">
+          <div class="dish__row">
+            <h3 class="dish__name">Blaufränkisch</h3>
+            <span class="dish__lead" aria-hidden="true"></span>
+            <span class="dish__price">17,20 / 3,20</span>
+          </div>
+          <p class="dish__origin">Weingut Paul Kerschbau</p>
+          <p class="dish__desc" data-en="Ruby garnet with youthful violet reflections and a watery rim; a delicate touch of nougat on the nose, restrained overall; dark fruit on the palate with well-harmonised tannins. Very easy to drink.">Rubingranat, jugendlich violette Reflexe, Wasserrand; in der Nase zarter Nougattouch, insgesamt eher verhaltene Nuancen; am Gaumen dunkle Frucht, gut harmonisierte Tannine, sehr trinkfreudig.</p>
+        </li>
+        <li class="dish">
+          <div class="dish__row">
+            <h3 class="dish__name">Cabernet Sauvignon Selection</h3>
+            <span class="dish__lead" aria-hidden="true"></span>
+            <span class="dish__price">17,20 / 3,20</span>
+          </div>
+          <p class="dish__origin">Weingut Josef Salzl, Illmitz/Neusiedlersee</p>
+          <p class="dish__desc" data-en="Deep ruby garnet, violet reflections, a delicate lightening at the rim; ripe dried-fruit notes on the nose recalling plums, plus cassis; on the palate the typical blackcurrant fruit, black olives, herbs and fine soft tannins, with a hint of chocolate. Juicy and very dense, with discreet, well-integrated toasty notes that are never obtrusive; ageing in used old barriques suits it perfectly. Lovely harmony, and a versatile companion at the table.">Dunkles Rubingranat, violette Reflexe, zarte Randaufhellung; in der Nase reife Dörrobstanklänge, an Zwetschken erinnernd, Cassis; am Gaumen typische Johannisbeerfrucht, schwarze Oliven, Kräuter, feine weiche Tannine, Schoko klingt an, saftig, sehr dicht, ganz dezente, schön eingebundene Röstaromen, die keineswegs aufdringlich wirken; der Ausbau im gebrauchten alten Barriquefass passt perfekt, schöne Harmonie; vielseitiger Speisebegleiter.</p>
+        </li>
+        <li class="dish">
+          <div class="dish__row">
+            <h3 class="dish__name">Vulcano</h3>
+            <span class="dish__lead" aria-hidden="true"></span>
+            <span class="dish__price">29,80</span>
+          </div>
+          <p class="dish__origin">55% Blaufränkisch, 20% Cabernet Sauvignon, 15% Merlot, 10% Zweigelt · Weingut Hans Igler, Deutschkreutz/Burgenland</p>
+          <p class="dish__desc" data-en="This wine shows a deep ruby red with lovely fruit and fine toasty aromas on the nose; finesse, fruit and spice on the palate. Its compact body and well-integrated, ripe tannins make for a wine of real power.">Dieser Wein präsentiert sich dunkelrubinrot mit einer schönen Frucht, feinen Röstaromen in der Nase, Finesse, Frucht und Würze am Gaumen. Der kompakte Körper und die gut eingebundenen, reifen Tannine ergeben einen Wein mit viel Kraft.</p>
+        </li>
+        <li class="dish">
+          <div class="dish__row">
+            <h3 class="dish__name">Insoglio del Cinghiale</h3>
+            <span class="dish__lead" aria-hidden="true"></span>
+            <span class="dish__price">35,00</span>
+          </div>
+          <p class="dish__origin">Cabernet Franc, Cabernet Sauvignon, Syrah · Toskana IGT · Tenuta Campo di Sasso, Bibbona/Toskana</p>
+          <p class="dish__desc" data-en="Youthful purple red. Plenty of blackberry on the nose, accompanied by light spice and generally quite fruit-forward. Sweet fruit again on the palate, juicy freshness, well-supporting acidity and modern oak. Very well made.">Jugendliches Purpurrot. In der Nase viel Brombeere, begleitet von leichter Würze, allgemein recht fruchtbetont. Im Gaumen wieder süßliche Frucht, saftige Frische, gut stützende Säure und moderne Holzaromatik. Sehr gut gelungen.</p>
+        </li>
+        </ul>
+      </section>
+      <section class="menu-block reveal" id="schankweine">
+        <div class="menu-block__head">
+          <h2 data-en="Wines by the Glass">Schankweine</h2>
+          <button type="button" class="scan-link" data-full="assets/menu/10-wein-shots.jpg" data-title="Wein &amp; Shots" data-en-data-title="Wine &amp; Shots"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg><span data-en="Original card">Originalkarte</span></button>
+        </div>
+        <ul class="dishes">
+        <li class="dish">
+          <div class="dish__row">
+            <h3 class="dish__name" data-en="White Wine">Weißwein</h3>
+          </div>
+          <ul class="dish__variants">
+            <li><span>1/8 L</span><span class="dish__lead" aria-hidden="true"></span><span class="dish__price">2,90</span></li>
+            <li><span>1/4 L</span><span class="dish__lead" aria-hidden="true"></span><span class="dish__price">4,70</span></li>
+          </ul>
+        </li>
+        <li class="dish">
+          <div class="dish__row">
+            <h3 class="dish__name" data-en="White Wine Spritzer">Weißwein Gespritzt</h3>
+            <span class="dish__lead" aria-hidden="true"></span>
+            <span class="dish__price">3,70</span>
+          </div>
+          <p class="dish__desc"><span>1/4 L</span></p>
+        </li>
+        <li class="dish">
+          <div class="dish__row">
+            <h3 class="dish__name" data-en="Red Wine">Rotwein</h3>
+          </div>
+          <ul class="dish__variants">
+            <li><span>1/8 L</span><span class="dish__lead" aria-hidden="true"></span><span class="dish__price">2,90</span></li>
+            <li><span>1/4 L</span><span class="dish__lead" aria-hidden="true"></span><span class="dish__price">4,70</span></li>
+          </ul>
+        </li>
+        <li class="dish">
+          <div class="dish__row">
+            <h3 class="dish__name" data-en="Red Wine Spritzer">Rotwein Gespritzt</h3>
+            <span class="dish__lead" aria-hidden="true"></span>
+            <span class="dish__price">3,70</span>
+          </div>
+          <p class="dish__desc"><span>1/4 L</span></p>
+        </li>
+        <li class="dish">
+          <div class="dish__row">
+            <h3 class="dish__name" data-en="Aperol Spritz">Aperoll Gespritzt</h3>
+            <span class="dish__lead" aria-hidden="true"></span>
+            <span class="dish__price">5,70</span>
+          </div>
+          <p class="dish__desc"><span>1/4 L</span></p>
+        </li>
+        <li class="dish">
+          <div class="dish__row">
+            <h3 class="dish__name" data-en="Sake (rice wine from Japan)">Sake (Reiswein, aus Japan)</h3>
+            <span class="dish__lead" aria-hidden="true"></span>
+            <span class="dish__price">5,70</span>
+          </div>
+          <p class="dish__desc"><span>12 cl</span></p>
+        </li>
+        <li class="dish">
+          <div class="dish__row">
+            <h3 class="dish__name" data-en="Plum Wine (from Japan)">Pflaumenwein (aus Japan)</h3>
+            <span class="dish__lead" aria-hidden="true"></span>
+            <span class="dish__price">5,70</span>
+          </div>
+          <p class="dish__desc"><span>12 cl</span></p>
+        </li>
+        <li class="dish">
+          <div class="dish__row">
+            <h3 class="dish__name">Prosecco del Veneto (Sacchetto)</h3>
+          </div>
+          <ul class="dish__variants">
+            <li><span data-en="0.2 L">0,2 L</span><span class="dish__lead" aria-hidden="true"></span><span class="dish__price">8,50</span></li>
+            <li><span data-en="0.75 L">0,75 L</span><span class="dish__lead" aria-hidden="true"></span><span class="dish__price">25,90</span></li>
+          </ul>
+        </li>
+        <li class="dish">
+          <div class="dish__row">
+            <h3 class="dish__name" data-en="Champagne (Carte d’or Brut “Drappier”)">Champagner (Carte d’or Brut „Drappier“)</h3>
+          </div>
+          <ul class="dish__variants">
+            <li><span data-en="0.2 L">0,2 L</span><span class="dish__lead" aria-hidden="true"></span><span class="dish__price">29,00</span></li>
+            <li><span data-en="0.75 L">0,75 L</span><span class="dish__lead" aria-hidden="true"></span><span class="dish__price">85,00</span></li>
+          </ul>
+        </li>
+        </ul>
+      </section>
+      <section class="menu-block reveal" id="shots">
+        <div class="menu-block__head">
+          <h2>Shots</h2>
+          <button type="button" class="scan-link" data-full="assets/menu/10-wein-shots.jpg" data-title="Wein &amp; Shots" data-en-data-title="Wine &amp; Shots"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg><span data-en="Original card">Originalkarte</span></button>
+        </div>
+        <ul class="dishes">
+        <li class="dish">
+          <div class="dish__row">
+            <h3 class="dish__name">Olmeca/Gold</h3>
+            <span class="dish__lead" aria-hidden="true"></span>
+            <span class="dish__price">3,50</span>
+          </div>
+          <p class="dish__desc"><span>2 cl</span></p>
+        </li>
+        <li class="dish">
+          <div class="dish__row">
+            <h3 class="dish__name">Vodka</h3>
+            <span class="dish__lead" aria-hidden="true"></span>
+            <span class="dish__price">3,50</span>
+          </div>
+          <p class="dish__desc"><span>2 cl</span></p>
+        </li>
+        <li class="dish">
+          <div class="dish__row">
+            <h3 class="dish__name">Rum Havana</h3>
+            <span class="dish__lead" aria-hidden="true"></span>
+            <span class="dish__price">3,50</span>
+          </div>
+          <p class="dish__desc"><span>2 cl</span></p>
+        </li>
+        <li class="dish">
+          <div class="dish__row">
+            <h3 class="dish__name">Martini dry / rosso</h3>
+            <span class="dish__lead" aria-hidden="true"></span>
+            <span class="dish__price">3,50</span>
+          </div>
+          <p class="dish__desc"><span>4 cl</span></p>
+        </li>
+        <li class="dish">
+          <div class="dish__row">
+            <h3 class="dish__name" data-en="Ginseng Schnapps">Ginsengschnaps</h3>
+            <span class="dish__lead" aria-hidden="true"></span>
+            <span class="dish__price">4,80</span>
+          </div>
+          <p class="dish__desc"><span>2 cl</span></p>
+        </li>
+        <li class="dish">
+          <div class="dish__row">
+            <h3 class="dish__name" data-en="Soju (Korean)">Soju (koreanisch)</h3>
+            <span class="dish__lead" aria-hidden="true"></span>
+            <span class="dish__price">3,20</span>
+          </div>
+          <p class="dish__desc"><span>4 cl</span></p>
+        </li>
+        <li class="dish">
+          <div class="dish__row">
+            <h3 class="dish__name" data-en="Soju (bottle)">Soju (Flasche)</h3>
+            <span class="dish__lead" aria-hidden="true"></span>
+            <span class="dish__price">15,00</span>
+          </div>
+          <p class="dish__desc"><span data-en="0.36 L">0,36 L</span></p>
+        </li>
+        </ul>
+      </section>
+      <section class="menu-block reveal" id="long-drinks">
+        <div class="menu-block__head">
+          <h2>Long Drinks</h2>
+          <button type="button" class="scan-link" data-full="assets/menu/10-wein-shots.jpg" data-title="Wein &amp; Shots" data-en-data-title="Wine &amp; Shots"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg><span data-en="Original card">Originalkarte</span></button>
+        </div>
+        <ul class="dishes">
+        <li class="dish">
+          <div class="dish__row">
+            <h3 class="dish__name">Gin Tonic</h3>
+            <span class="dish__lead" aria-hidden="true"></span>
+            <span class="dish__price">7,00</span>
+          </div>
+          <p class="dish__desc"><span data-en="0.25 L">0,25 L</span></p>
+        </li>
+        <li class="dish">
+          <div class="dish__row">
+            <h3 class="dish__name">Malibu Orange</h3>
+            <span class="dish__lead" aria-hidden="true"></span>
+            <span class="dish__price">7,00</span>
+          </div>
+          <p class="dish__desc"><span data-en="0.25 L">0,25 L</span></p>
+        </li>
+        <li class="dish">
+          <div class="dish__row">
+            <h3 class="dish__name">Vodka Orange</h3>
+            <span class="dish__lead" aria-hidden="true"></span>
+            <span class="dish__price">7,00</span>
+          </div>
+          <p class="dish__desc"><span data-en="0.25 L">0,25 L</span></p>
+        </li>
+        <li class="dish">
+          <div class="dish__row">
+            <h3 class="dish__name">Vodka Red Bull</h3>
+            <span class="dish__lead" aria-hidden="true"></span>
+            <span class="dish__price">7,20</span>
+          </div>
+          <p class="dish__desc"><span data-en="0.25 L">0,25 L</span></p>
+        </li>
+        <li class="dish">
+          <div class="dish__row">
+            <h3 class="dish__name">Bourbon Cola</h3>
+            <span class="dish__lead" aria-hidden="true"></span>
+            <span class="dish__price">7,20</span>
+          </div>
+          <p class="dish__desc"><span data-en="0.25 L">0,25 L</span></p>
+        </li>
+        <li class="dish">
+          <div class="dish__row">
+            <h3 class="dish__name">Campari Soda</h3>
+            <span class="dish__lead" aria-hidden="true"></span>
+            <span class="dish__price">5,20</span>
+          </div>
+          <p class="dish__desc"><span data-en="0.25 L">0,25 L</span></p>
+        </li>
+        <li class="dish">
+          <div class="dish__row">
+            <h3 class="dish__name">Campari Orange</h3>
+            <span class="dish__lead" aria-hidden="true"></span>
+            <span class="dish__price">6,20</span>
+          </div>
+          <p class="dish__desc"><span data-en="0.25 L">0,25 L</span></p>
+        </li>
+        <li class="dish">
+          <div class="dish__row">
+            <h3 class="dish__name">Bacardi Cola</h3>
+            <span class="dish__lead" aria-hidden="true"></span>
+            <span class="dish__price">7,00</span>
+          </div>
+          <p class="dish__desc"><span data-en="0.25 L">0,25 L</span></p>
+        </li>
+        </ul>
+      </section>
+      <section class="menu-block reveal" id="tee">
+        <div class="menu-block__head">
+          <h2 data-en="Tea">Tee</h2>
+          <button type="button" class="scan-link" data-full="assets/menu/11-tee-bier.jpg" data-title="Tee &amp; Bier" data-en-data-title="Tea &amp; Beer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg><span data-en="Original card">Originalkarte</span></button>
+        </div>
+        <ul class="dishes">
+        <li class="dish">
+          <div class="dish__row">
+            <h3 class="dish__name" data-en="Green Tea">Grüner Tee</h3>
+            <span class="dish__lead" aria-hidden="true"></span>
+            <span class="dish__price">4,50</span>
+          </div>
+        </li>
+        <li class="dish">
+          <div class="dish__row">
+            <h3 class="dish__name" data-en="Genmei Tea (Japanese rice tea)">Genmei Tee (Japan Reis Tee)</h3>
+            <span class="dish__lead" aria-hidden="true"></span>
+            <span class="dish__price">4,50</span>
+          </div>
+        </li>
+        <li class="dish">
+          <div class="dish__row">
+            <h3 class="dish__name" data-en="Jasmine Tea">Jasmin Tee</h3>
+            <span class="dish__lead" aria-hidden="true"></span>
+            <span class="dish__price">4,50</span>
+          </div>
+        </li>
+        <li class="dish">
+          <div class="dish__row">
+            <h3 class="dish__name" data-en="Ginseng Tea">Ginseng Tee</h3>
+            <span class="dish__lead" aria-hidden="true"></span>
+            <span class="dish__price">5,50</span>
+          </div>
+        </li>
+        <li class="dish">
+          <div class="dish__row">
+            <h3 class="dish__name" data-en="Ginger Tea">Ingwer Tee</h3>
+            <span class="dish__lead" aria-hidden="true"></span>
+            <span class="dish__price">5,80</span>
+          </div>
+        </li>
+        </ul>
+      </section>
+      <section class="menu-block reveal" id="bier">
+        <div class="menu-block__head">
+          <h2 data-en="Beer">Bier</h2>
+          <button type="button" class="scan-link" data-full="assets/menu/11-tee-bier.jpg" data-title="Tee &amp; Bier" data-en-data-title="Tea &amp; Beer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg><span data-en="Original card">Originalkarte</span></button>
+        </div>
+        <ul class="dishes">
+        <li class="dish">
+          <div class="dish__row">
+            <h3 class="dish__name">Stiegl-Pils</h3>
+          </div>
+          <p class="dish__desc"><span data-en="on tap">vom Fass</span></p>
+          <ul class="dish__variants">
+            <li><span data-en="0.2 L">0,2 L</span><span class="dish__lead" aria-hidden="true"></span><span class="dish__price">3,50</span></li>
+            <li><span data-en="0.3 L">0,3 L</span><span class="dish__lead" aria-hidden="true"></span><span class="dish__price">4,20</span></li>
+            <li><span data-en="0.5 L">0,5 L</span><span class="dish__lead" aria-hidden="true"></span><span class="dish__price">5,50</span></li>
+          </ul>
+        </li>
+        <li class="dish">
+          <div class="dish__row">
+            <h3 class="dish__name">Stiegl-Zwickl</h3>
+            <span class="dish__lead" aria-hidden="true"></span>
+            <span class="dish__price">4,50</span>
+          </div>
+          <p class="dish__desc"><span data-en="bottle">Flasche</span></p>
+        </li>
+        <li class="dish">
+          <div class="dish__row">
+            <h3 class="dish__name">Hirter Privat Pils</h3>
+            <span class="dish__lead" aria-hidden="true"></span>
+            <span class="dish__price">5,50</span>
+          </div>
+          <p class="dish__desc"><span data-en="bottle · 0.5 L">Flasche · 0,5 L</span></p>
+        </li>
+        <li class="dish">
+          <div class="dish__row">
+            <h3 class="dish__name">König Ludwig Weissbier Hell</h3>
+            <span class="dish__lead" aria-hidden="true"></span>
+            <span class="dish__price">5,50</span>
+          </div>
+          <p class="dish__desc"><span data-en="bottle · 0.5 L">Flasche · 0,5 L</span></p>
+        </li>
+        <li class="dish">
+          <div class="dish__row">
+            <h3 class="dish__name">König Ludwig Dunkel</h3>
+            <span class="dish__lead" aria-hidden="true"></span>
+            <span class="dish__price">5,50</span>
+          </div>
+          <p class="dish__desc"><span data-en="bottle · 0.5 L">Flasche · 0,5 L</span></p>
+        </li>
+        <li class="dish">
+          <div class="dish__row">
+            <h3 class="dish__name" data-en="Stiegl-Gaudi-Radler Lemon">Stiegl-Gaudi-Radler Zitrone</h3>
+            <span class="dish__lead" aria-hidden="true"></span>
+            <span class="dish__price">5,50</span>
+          </div>
+          <p class="dish__desc"><span data-en="bottle · 0.5 L">Flasche · 0,5 L</span></p>
+        </li>
+        <li class="dish">
+          <div class="dish__row">
+            <h3 class="dish__name" data-en="Clausthaler non-alcoholic">Clausthaler alkoholfrei</h3>
+            <span class="dish__lead" aria-hidden="true"></span>
+            <span class="dish__price">5,50</span>
+          </div>
+          <p class="dish__desc"><span data-en="bottle · 0.5 L">Flasche · 0,5 L</span></p>
+        </li>
+        <li class="dish">
+          <div class="dish__row">
+            <h3 class="dish__name" data-en="Kirin Beer">Kirin Bier</h3>
+            <span class="dish__lead" aria-hidden="true"></span>
+            <span class="dish__price">4,90</span>
+          </div>
+          <p class="dish__desc"><span data-en="Japanese beer · bottle · 0.33 L">japanisches Bier · Flasche · 0,33 L</span></p>
+        </li>
+        <li class="dish">
+          <div class="dish__row">
+            <h3 class="dish__name" data-en="Asahi Beer">Asahi Bier</h3>
+            <span class="dish__lead" aria-hidden="true"></span>
+            <span class="dish__price">4,90</span>
+          </div>
+          <p class="dish__desc"><span data-en="Japanese beer · bottle · 0.33 L">japanisches Bier · Flasche · 0,33 L</span></p>
+        </li>
+        </ul>
+      </section>
+      <p class="menu-foot" data-en="All prices in euros, including taxes and duties. Subject to change and printing errors – the printed card in the restaurant applies. The English text is a translation for guidance; please ask us if anything is unclear.">Alle Preise in Euro inklusive Steuern und Abgaben. Änderungen und Druckfehler vorbehalten – maßgeblich ist die Karte im Lokal.</p>
     </div>
   </section>
 

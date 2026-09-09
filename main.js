@@ -267,8 +267,22 @@
 
   /* ---------- Lightbox for the scanned menu pages ---------- */
   (function lightbox() {
-    var cards = Array.prototype.slice.call(document.querySelectorAll('[data-full]'));
-    if (!cards.length) return;
+    var triggers = Array.prototype.slice.call(document.querySelectorAll('[data-full]'));
+    if (!triggers.length) return;
+
+    // Sections that continue on the same scanned page share one trigger image,
+    // so the gallery holds each page once and every trigger opens its own page.
+    var cards = [];
+    triggers.forEach(function (el) {
+      if (indexOfPage(el.getAttribute('data-full')) < 0) cards.push(el);
+    });
+
+    function indexOfPage(src) {
+      for (var i = 0; i < cards.length; i++) {
+        if (cards[i].getAttribute('data-full') === src) return i;
+      }
+      return -1;
+    }
 
     var lastFocus = null;
     var current = 0;
@@ -333,8 +347,10 @@
       if (lastFocus) lastFocus.focus();
     }
 
-    cards.forEach(function (card, i) {
-      card.addEventListener('click', function () { open(i); });
+    triggers.forEach(function (el) {
+      el.addEventListener('click', function () {
+        open(Math.max(0, indexOfPage(el.getAttribute('data-full'))));
+      });
     });
 
     // The page titles come from the cards, which i18n has just re-labelled.
