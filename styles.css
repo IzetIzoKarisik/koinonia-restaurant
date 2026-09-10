@@ -134,7 +134,9 @@ ul { margin: 0; padding: 0; list-style: none; }
 .btn:active { transform: translateY(0); }
 .btn--ghost { --btn-bg: transparent; --btn-fg: currentColor; border-color: currentColor; }
 .btn--ghost:hover { background: currentColor; box-shadow: none; }
-.btn--ghost:hover span { color: var(--ink); }
+.btn--ghost:hover span, .btn--ghost:hover svg { color: #fff; }
+.hero .btn--ghost:hover span, .hero .btn--ghost:hover svg,
+.cta-band .btn--ghost:hover span, .cta-band .btn--ghost:hover svg { color: var(--ink); }
 .btn--light { --btn-bg: #fff; --btn-fg: var(--ink); }
 .btn--light:hover { background: var(--cream-deep); }
 .btn svg { width: 1em; height: 1em; flex: none; }
