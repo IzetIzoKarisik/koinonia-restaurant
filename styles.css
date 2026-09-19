@@ -465,17 +465,34 @@ a.card:hover .card__num { color: var(--gold); }
 .card__more svg { width: 14px; height: 14px; transition: transform .3s var(--ease); }
 a.card:hover .card__more svg { transform: translateX(4px); }
 
-/* ---------- Gallery (panorama strips) ---------- */
-.gallery {
-  display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.1rem;
+/* ---------- Photo set (tile rows + panorama bands) ---------- */
+/* Bands and tile rows are separate containers stacked in normal flow rather
+   than one grid with full-width spans: a spanning item sitting next to
+   aspect-ratio items makes Chrome mis-place the first auto-placed row. */
+.photo-set { display: flex; flex-direction: column; gap: 1.1rem; }
+.photo-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.1rem; }
+/* Each group is three tiles, so two columns would always strand one on a
+   half-empty row. The three-up holds until it has to give, then goes to one. */
+@media (max-width: 600px) { .photo-row { grid-template-columns: 1fr; } }
+
+.photo-set figure {
+  margin: 0; overflow: hidden; border-radius: var(--radius);
+  background: var(--cream-deep);
 }
-@media (max-width: 720px) { .gallery { grid-template-columns: 1fr; } }
-.gallery figure { margin: 0; overflow: hidden; border-radius: var(--radius); background: var(--cream-deep); }
-.gallery img {
-  width: 100%; aspect-ratio: 4 / 1; object-fit: cover;
+.photo-set img {
+  display: block; width: 100%; height: 100%; object-fit: cover;
   transition: transform .8s var(--ease), filter .5s var(--ease);
 }
-.gallery figure:hover img { transform: scale(1.05); }
+.photo-set figure:hover img { transform: scale(1.05); }
+
+.photo-row figure { aspect-ratio: 4 / 3; }
+.photo-band { aspect-ratio: 4 / 1; }
+
+/* Portraits lose their top and bottom to the 4:3 tile, so each one is
+   anchored on the part that has to survive the crop. */
+.photo-row .pin-top img { object-position: center 12%; }
+.photo-row .pin-upper img { object-position: center 28%; }
+.photo-row .pin-lower img { object-position: center 62%; }
 
 /* ---------- Menu card grid (scanned pages) ---------- */
 /* ---------- Menu as text (bilingual) ---------- */
