@@ -8,23 +8,42 @@
 <meta name="theme-color" content="#100e0c">
 <meta property="og:title" content="Koinonia – Japanische &amp; Koreanische Spezialitäten in Wien Währing" data-en-content="Koinonia – Japanese &amp; Korean Specialities in Vienna Währing">
 <meta property="og:description" content="Koinonia in 1180 Wien: Sushi, Maki, koreanische und thailändische Spezialitäten. Klostergasse 37, Ecke Währinger Straße. Täglich geöffnet, kein Ruhetag." data-en-content="Koinonia in 1180 Vienna: sushi, maki, Korean and Thai specialities. Klostergasse 37, corner of Währinger Straße. Open daily, no closing day.">
-<meta property="og:type" content="restaurant">
-<meta property="og:image" content="assets/img/gallery-2.jpg">
-<link rel="icon" href="assets/img/logo.gif">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Koinonia">
+<meta property="og:locale" content="de_AT">
+<meta property="og:locale:alternate" content="en_GB">
+<meta property="og:url" content="https://www.koinonia.co.at/">
+<meta property="og:image" content="https://www.koinonia.co.at/assets/img/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://www.koinonia.co.at/">
+<link rel="icon" href="favicon.ico" sizes="48x48">
+<link rel="icon" href="assets/icons/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<link rel="preload" href="assets/img/gallery-2.webp" as="image" fetchpriority="high">
+<link rel="preload" href="assets/fonts/cormorant-garamond-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="styles.css">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Restaurant",
+  "@id": "https://www.koinonia.co.at/#restaurant",
   "name": "Koinonia",
   "description": "Japanische und koreanische Spezialitäten in Wien Währing.",
-  "servesCuisine": ["Japanisch", "Koreanisch", "Thailändisch"],
+  "url": "https://www.koinonia.co.at/",
+  "image": "https://www.koinonia.co.at/assets/img/og-image.jpg",
+  "logo": "https://www.koinonia.co.at/assets/icons/icon-512.png",
+  "servesCuisine": [
+    "Japanisch",
+    "Koreanisch",
+    "Thailändisch"
+  ],
+  "menu": "https://www.koinonia.co.at/speisen.html",
+  "acceptsReservations": true,
   "telephone": "+43 1 479 5964",
   "email": "office@koinonia.co.at",
-  "url": "http://www.koinonia.co.at",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "Klostergasse 37",
@@ -32,13 +51,40 @@
     "postalCode": "1180",
     "addressCountry": "AT"
   },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 48.2283,
+    "longitude": 16.3348
+  },
   "openingHoursSpecification": [
-    { "@type": "OpeningHoursSpecification",
-       "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
-       "opens": "11:30", "closes": "15:00" },
-    { "@type": "OpeningHoursSpecification",
-       "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
-       "opens": "17:30", "closes": "22:30" }
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+      ],
+      "opens": "11:30",
+      "closes": "15:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+      ],
+      "opens": "17:30",
+      "closes": "22:30"
+    }
   ]
 }
 </script>
@@ -81,12 +127,13 @@
 
   <section class="hero">
     <div class="hero__slides" aria-hidden="true">
-      <div class="hero__slide"><img src="assets/img/gallery-2.jpg" alt="Nigiri und Maki mit Lachs und Avocado in Nahaufnahme" data-en-alt="Close-up of nigiri and maki with salmon and avocado" decoding="async"></div>
-      <div class="hero__slide"><img src="assets/img/saal-hell.jpg" alt="Heller Gastraum mit eingedeckten Tischen, Bonsai an den Fenstern und violetten Lounge-Sesseln" data-en-alt="Bright dining room with laid tables, bonsai in the windows and purple lounge chairs" loading="lazy" decoding="async"></div>
-      <div class="hero__slide"><img src="assets/img/gallery-6.jpg" alt="Gäste im begrünten Gastgarten an einem Sommertag" data-en-alt="Guests in the leafy garden terrace on a summer day" loading="lazy" decoding="async"></div>
-      <div class="hero__slide"><img src="assets/img/gallery-7.jpg" alt="Traditionelle koreanische Masken an der roten Wand des Lokals" data-en-alt="Traditional Korean masks on the restaurant's red wall" loading="lazy" decoding="async"></div>
-      <div class="hero__slide"><img src="assets/img/bar-lounge.jpg" alt="Gastraum mit Bank-Bestuhlung vor der Bar, Masken an der Wand" data-en-alt="Dining area with banquette seating in front of the bar, masks on the wall" loading="lazy" decoding="async"></div>
-      <div class="hero__slide"><img src="assets/img/gallery-1.jpg" alt="Suppe in weißer Schale, mit frischem Basilikum angerichtet" data-en-alt="Soup in a white bowl, garnished with fresh basil" loading="lazy" decoding="async"></div>
+      <div class="hero__slide"><img src="assets/img/gallery-2.webp" width="1800" height="450" fetchpriority="high" alt="Nigiri und Maki mit Lachs und Avocado in Nahaufnahme" data-en-alt="Close-up of nigiri and maki with salmon and avocado" decoding="async"></div>
+      <div class="hero__slide"><img src="assets/img/saal-hell.webp" width="944" height="630" alt="Heller Gastraum mit eingedeckten Tischen, Bonsai an den Fenstern und violetten Lounge-Sesseln" data-en-alt="Bright dining room with laid tables, bonsai in the windows and purple lounge chairs" loading="lazy" decoding="async"></div>
+      <div class="hero__slide"><img src="assets/img/gallery-6.webp" width="1800" height="450" alt="Gäste im begrünten Gastgarten an einem Sommertag" data-en-alt="Guests in the leafy garden terrace on a summer day" loading="lazy" decoding="async"></div>
+      <div class="hero__slide"><img src="assets/img/gallery-7.webp" width="1800" height="450" alt="Traditionelle koreanische Masken an der roten Wand des Lokals" data-en-alt="Traditional Korean masks on the restaurant's red wall" loading="lazy" decoding="async"></div>
+      <div class="hero__slide"><img src="assets/img/bar-lounge.webp" width="944" height="708" alt="Gastraum mit Bank-Bestuhlung vor der Bar, Masken an der Wand" data-en-alt="Dining area with banquette seating in front of the bar, masks on the wall" loading="lazy" decoding="async"></div>
+      <div class="hero__slide"><img src="assets/img/gallery-1.webp" width="1800" height="450" alt="Suppe in weißer Schale, mit frischem Basilikum angerichtet" data-en-alt="Soup in a white bowl, garnished with fresh basil" loading="lazy" decoding="async"></div>
+      <div class="hero__slide"><img src="assets/img/saal-abend.webp" width="1800" height="1200" alt="Gastraum am Abend mit eingedeckten Tischen und dem Koch an der offenen Sushi-Bar" data-en-alt="The dining room in the evening with laid tables and the chef at the open sushi bar" loading="lazy" decoding="async"></div>
     </div>
 
     <div class="wrap hero__inner">
@@ -122,7 +169,7 @@
 
       <div class="reveal">
         <figure class="figure-stack" style="margin:0">
-          <img src="assets/img/aussen-abend.jpg" alt="Der beleuchtete Schriftzug des Restaurant Koinonia an der Hausfassade in der Klostergasse, im Abendlicht" data-en-alt="The illuminated Koinonia sign on the building facade in Klostergasse at dusk" loading="lazy" decoding="async">
+          <img src="assets/img/aussen-abend.webp" width="944" height="1258" alt="Der beleuchtete Schriftzug des Restaurant Koinonia an der Hausfassade in der Klostergasse, im Abendlicht" data-en-alt="The illuminated Koinonia sign on the building facade in Klostergasse at dusk" loading="lazy" decoding="async">
           <figcaption class="figure-caption" data-en="Klostergasse 37, corner of Währinger Straße – 1180 Vienna">Klostergasse 37, Ecke Währinger Straße – 1180 Wien</figcaption>
         </figure>
       </div>
@@ -173,19 +220,19 @@
         <p class="lede" data-en="An open sushi bar, Korean masks on the red wall and a leafy garden terrace for warm days.">Offene Sushi-Bar, koreanische Masken an der roten Wand und ein begrünter Gastgarten für warme Tage.</p>
       </div>
       <div class="photo-set">
-        <figure class="photo-band reveal"><img src="assets/img/gallery-3.jpg" alt="Der Koch richtet Sushi mit frischer Zitrone auf dem Holzbrett an" data-en-alt="The chef arranging sushi with fresh lemon on a wooden board" loading="lazy" decoding="async"></figure>
+        <figure class="photo-band reveal"><img src="assets/img/gallery-3.webp" width="1800" height="450" alt="Der Koch richtet Sushi mit frischer Zitrone auf dem Holzbrett an" data-en-alt="The chef arranging sushi with fresh lemon on a wooden board" loading="lazy" decoding="async"></figure>
         <div class="photo-row reveal">
-          <figure><img src="assets/img/saal-hell.jpg" alt="Heller Gastraum mit eingedeckten Tischen, Bonsai an den Fenstern und violetten Lounge-Sesseln" data-en-alt="Bright dining room with laid tables, bonsai in the windows and purple lounge chairs" loading="lazy" decoding="async"></figure>
-          <figure><img src="assets/img/bar-lounge.jpg" alt="Gastraum mit Bank-Bestuhlung vor der Bar, Masken an der Wand" data-en-alt="Dining area with banquette seating in front of the bar, masks on the wall" loading="lazy" decoding="async"></figure>
-          <figure><img src="assets/img/masken-saal.jpg" alt="Lange Bankreihe unter den beleuchteten koreanischen Masken und Bildern" data-en-alt="A long row of banquette seating beneath the lit Korean masks and pictures" loading="lazy" decoding="async"></figure>
+          <figure><img src="assets/img/saal-hell.webp" width="944" height="630" alt="Heller Gastraum mit eingedeckten Tischen, Bonsai an den Fenstern und violetten Lounge-Sesseln" data-en-alt="Bright dining room with laid tables, bonsai in the windows and purple lounge chairs" loading="lazy" decoding="async"></figure>
+          <figure><img src="assets/img/bar-lounge.webp" width="944" height="708" alt="Gastraum mit Bank-Bestuhlung vor der Bar, Masken an der Wand" data-en-alt="Dining area with banquette seating in front of the bar, masks on the wall" loading="lazy" decoding="async"></figure>
+          <figure><img src="assets/img/masken-saal.webp" width="944" height="708" alt="Lange Bankreihe unter den beleuchteten koreanischen Masken und Bildern" data-en-alt="A long row of banquette seating beneath the lit Korean masks and pictures" loading="lazy" decoding="async"></figure>
         </div>
-        <figure class="photo-band reveal"><img src="assets/img/gallery-8.jpg" alt="Eingedeckte Tafel mit weißer Tischdecke und gefalteten Servietten" data-en-alt="A laid table with white linen and folded napkins" loading="lazy" decoding="async"></figure>
+        <figure class="photo-band reveal"><img src="assets/img/gallery-8.webp" width="1800" height="450" alt="Eingedeckte Tafel mit weißer Tischdecke und gefalteten Servietten" data-en-alt="A laid table with white linen and folded napkins" loading="lazy" decoding="async"></figure>
         <div class="photo-row reveal">
-          <figure class="pin-top"><img src="assets/img/aussen-abend.jpg" alt="Der beleuchtete Schriftzug des Koinonia über dem Gehsteig, dahinter die Klostergasse im Abendlicht" data-en-alt="The illuminated Koinonia sign above the pavement, with Klostergasse behind it at dusk" loading="lazy" decoding="async"></figure>
-          <figure class="pin-lower"><img src="assets/img/tisch-gold.jpg" alt="Eingedeckter Tisch vor der goldenen Ornamenttapete, daneben eine Zimmerpflanze" data-en-alt="A laid table in front of the gold patterned wallpaper, with a potted plant beside it" loading="lazy" decoding="async"></figure>
-          <figure class="pin-upper"><img src="assets/img/aussen-eingang.jpg" alt="Der Eingang des Koinonia mit dem Schriftzug über der Tür, von der Straße aus gesehen" data-en-alt="The entrance to Koinonia with the sign above the door, seen from the street" loading="lazy" decoding="async"></figure>
+          <figure class="pin-top"><img src="assets/img/aussen-abend.webp" width="944" height="1258" alt="Der beleuchtete Schriftzug des Koinonia über dem Gehsteig, dahinter die Klostergasse im Abendlicht" data-en-alt="The illuminated Koinonia sign above the pavement, with Klostergasse behind it at dusk" loading="lazy" decoding="async"></figure>
+          <figure class="pin-lower"><img src="assets/img/tisch-gold.webp" width="944" height="1180" alt="Eingedeckter Tisch vor der goldenen Ornamenttapete, daneben eine Zimmerpflanze" data-en-alt="A laid table in front of the gold patterned wallpaper, with a potted plant beside it" loading="lazy" decoding="async"></figure>
+          <figure class="pin-upper"><img src="assets/img/aussen-eingang.webp" width="944" height="1260" alt="Der Eingang des Koinonia mit dem Schriftzug über der Tür, von der Straße aus gesehen" data-en-alt="The entrance to Koinonia with the sign above the door, seen from the street" loading="lazy" decoding="async"></figure>
         </div>
-        <figure class="photo-band reveal"><img src="assets/img/gallery-5.jpg" alt="Weinflaschen aus der Weinkarte des Koinonia" data-en-alt="Wine bottles from the Koinonia wine list" loading="lazy" decoding="async"></figure>
+        <figure class="photo-band reveal"><img src="assets/img/gallery-5.webp" width="1800" height="450" alt="Weinflaschen aus der Weinkarte des Koinonia" data-en-alt="Wine bottles from the Koinonia wine list" loading="lazy" decoding="async"></figure>
       </div>
     </div>
   </section>
@@ -270,6 +317,7 @@
     <div class="footer__bottom">
       <span>&copy; <span id="year">2026</span><span data-en=" Koinonia · Restaurant &amp; Cafe, Vienna"> Koinonia · Restaurant &amp; Cafe, Wien</span></span>
       <span><a href="tel:+4314795964" data-en="Table reservations: +43 1 479 5964">Tischreservierung: +43 1 479 5964</a></span>
+      <span><a href="impressum.html" data-en="Legal Notice">Impressum</a> · <a href="datenschutz.html" data-en="Privacy">Datenschutz</a></span>
     </div>
   </div>
 </footer>

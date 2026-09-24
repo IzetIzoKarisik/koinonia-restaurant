@@ -1,401 +1,485 @@
 /* ==========================================================================
-   Koinonia — site behaviour
-   Header state, mobile nav, hero slider, scroll reveal, menu lightbox.
-   Every module bails out quietly if its markup is absent, so one file
-   serves every page.
+   Koinonia — website behaviour
+
+   This file is split into small, named functions — one per feature
+   (language switch, mobile menu, hero slider, ...). Every feature checks
+   for its own HTML first and simply does nothing if that HTML isn't on
+   the page, so the same file works on every page of the site.
+
+   Everything below is wrapped in one function that runs immediately.
+   That's just so none of our variable and function names leak out into
+   the global scope, where they could clash with some other script.
    ========================================================================== */
 (function () {
   'use strict';
 
+  // Does this visitor's browser/OS ask for reduced motion? We check this
+  // once at the top and reuse the answer everywhere below.
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ---------- Language: German is the source, English on request ----------
-     Every translatable string sits beside its German original in the markup:
-     data-en carries the text, data-en-<attribute> anything else (alt,
-     aria-label, content, title, data-title). The choice is remembered per
-     visitor, and ?lang=en links straight to the English version. */
-  var i18n = (function () {
-    var STORE = 'koinonia-lang';
-    var PREFIX = 'data-en-';
-    // CSS cannot match "any attribute starting with", so the translated
-    // attributes are listed here - extend it when the markup gains a new one.
-    var SELECTOR = '[data-en],[data-en-alt],[data-en-aria-label],' +
-                   '[data-en-content],[data-en-title],[data-en-data-title]';
-    var listeners = [];
-    var lang = 'de';
+  /* ==========================================================================
+     Language: German is written directly in the HTML. The English text for
+     an element sits next to it in a "data-en" attribute (or "data-en-alt",
+     "data-en-aria-label", etc. for things other than the visible text).
+     Switching language just swaps the text/attributes back and forth.
+     ========================================================================== */
 
-    function remember(value) {
-      try { window.localStorage.setItem(STORE, value); } catch (e) { /* private mode */ }
+  var LANGUAGE_STORAGE_KEY = 'koinonia-lang';
+  var ENGLISH_ATTRIBUTE_PREFIX = 'data-en-';
+
+  // CSS can't match "any attribute that starts with data-en-", so we list
+  // the ones actually used in the markup here. Add to this list if a new
+  // data-en-something attribute is used in the HTML.
+  var TRANSLATABLE_SELECTOR =
+    '[data-en],[data-en-alt],[data-en-aria-label],' +
+    '[data-en-content],[data-en-title]';
+
+  var currentLanguage = 'de';
+  var languageChangeListeners = [];
+
+  function saveLanguageChoice(value) {
+    try {
+      window.localStorage.setItem(LANGUAGE_STORAGE_KEY, value);
+    } catch (e) {
+      // Some browsers block localStorage (e.g. private browsing mode).
+      // That's fine — we just won't remember the choice for next time.
+    }
+  }
+
+  function getSavedLanguageChoice() {
+    try {
+      return window.localStorage.getItem(LANGUAGE_STORAGE_KEY);
+    } catch (e) {
+      return null;
+    }
+  }
+
+  // Reads "?lang=de" or "?lang=en" from the page URL, e.g.
+  // "https://.../index.html?lang=en" -> "en". Returns null if there is no
+  // such parameter in the URL.
+  function getLanguageFromUrl() {
+    var query = window.location.search; // e.g. "?lang=en&table=2"
+    if (query === '') return null;
+
+    var params = query.slice(1).split('&'); // ["lang=en", "table=2"]
+    for (var i = 0; i < params.length; i++) {
+      if (params[i] === 'lang=de') return 'de';
+      if (params[i] === 'lang=en') return 'en';
+    }
+    return null;
+  }
+
+  // Decides which language to start with: the URL wins, then whatever was
+  // remembered from a previous visit, and German is the default.
+  function pickStartingLanguage() {
+    var fromUrl = getLanguageFromUrl();
+    if (fromUrl !== null) {
+      saveLanguageChoice(fromUrl);
+      return fromUrl;
     }
 
-    (function pick() {
-      var fromUrl = /[?&]lang=(de|en)(?:&|$)/.exec(window.location.search);
-      var wanted = fromUrl && fromUrl[1];
-      if (!wanted) {
-        try { wanted = window.localStorage.getItem(STORE); } catch (e) { /* private mode */ }
+    var saved = getSavedLanguageChoice();
+    if (saved === 'de' || saved === 'en') return saved;
+
+    return 'de';
+  }
+
+  // The first time we translate an element's text, we save the original
+  // German text on the element itself. That way, switching back to German
+  // later doesn't need a second copy of the text anywhere in the HTML.
+  function getOriginalGermanText(el) {
+    if (el.__germanText === undefined) {
+      el.__germanText = el.textContent;
+    }
+    return el.__germanText;
+  }
+
+  // Same idea, but for one attribute (alt, aria-label, ...) instead of the
+  // visible text.
+  function getOriginalGermanAttribute(el, name) {
+    if (el.__germanAttributes === undefined) {
+      el.__germanAttributes = {};
+    }
+    if (el.__germanAttributes[name] === undefined) {
+      el.__germanAttributes[name] = el.getAttribute(name);
+    }
+    return el.__germanAttributes[name];
+  }
+
+  // Switches one element's text and translated attributes to the current
+  // language.
+  function translateElement(el) {
+    var englishText = el.getAttribute('data-en');
+    if (englishText !== null) {
+      var germanText = getOriginalGermanText(el);
+      if (currentLanguage === 'en') {
+        el.textContent = englishText;
+      } else {
+        el.textContent = germanText;
       }
-      if (wanted !== 'de' && wanted !== 'en') return;
-      lang = wanted;
-      if (fromUrl) remember(lang);
-    }());
-
-    // The German wording is cached on the element the first time it is read,
-    // so switching back needs no second copy of it in the markup. It has to be
-    // taken on every swap, English ones included: a visitor who arrives with
-    // English already chosen would otherwise overwrite the original unseen.
-    function german(el, key, read) {
-      var cache = el.__koinoniaDe || (el.__koinoniaDe = {});
-      if (!(key in cache)) cache[key] = read();
-      return cache[key];
     }
 
-    function swap(el) {
-      var text = el.getAttribute('data-en');
-      if (text !== null) {
-        var originalText = german(el, '#text', function () { return el.textContent; });
-        el.textContent = lang === 'en' ? text : originalText;
+    // Find every attribute on this element that starts with "data-en-".
+    // We collect the names first, then change them in a second loop —
+    // changing an attribute while looping over el.attributes directly
+    // would skip some of the others.
+    var namesToTranslate = [];
+    for (var i = 0; i < el.attributes.length; i++) {
+      var attributeName = el.attributes[i].name;
+      if (attributeName.indexOf(ENGLISH_ATTRIBUTE_PREFIX) === 0) {
+        namesToTranslate.push(attributeName);
       }
-      // Copy first: setAttribute writes into the live NamedNodeMap we iterate.
-      Array.prototype.slice.call(el.attributes).forEach(function (attr) {
-        if (attr.name.indexOf(PREFIX) !== 0) return;
-        var name = attr.name.slice(PREFIX.length);
-        var original = german(el, name, function () { return el.getAttribute(name); });
-        var value = lang === 'en' ? attr.value : original;
-        if (value !== null) el.setAttribute(name, value);
-      });
     }
 
-    function apply(root) {
-      var scope = root || document;
-      if (scope.nodeType === 1 && scope.matches(SELECTOR)) swap(scope);
-      Array.prototype.forEach.call(scope.querySelectorAll(SELECTOR), swap);
-      document.documentElement.lang = lang;
-    }
+    for (var j = 0; j < namesToTranslate.length; j++) {
+      var englishAttributeName = namesToTranslate[j];
+      var targetAttributeName = englishAttributeName.slice(ENGLISH_ATTRIBUTE_PREFIX.length);
+      var englishValue = el.getAttribute(englishAttributeName);
+      var germanValue = getOriginalGermanAttribute(el, targetAttributeName);
 
-    apply();
-
-    return {
-      current: function () { return lang; },
-      t: function (de, en) { return lang === 'en' ? en : de; },
-      apply: apply,
-      onChange: function (fn) { listeners.push(fn); },
-      set: function (next) {
-        if (next !== 'de' && next !== 'en') return;
-        if (next === lang) return;
-        lang = next;
-        remember(lang);
-        apply();
-        listeners.forEach(function (fn) { fn(lang); });
+      if (currentLanguage === 'en') {
+        el.setAttribute(targetAttributeName, englishValue);
+      } else if (germanValue !== null) {
+        el.setAttribute(targetAttributeName, germanValue);
       }
-    };
-  }());
+    }
+  }
+
+  // Translates every matching element on the page to the current language.
+  function translatePage() {
+    var elements = document.querySelectorAll(TRANSLATABLE_SELECTOR);
+    for (var i = 0; i < elements.length; i++) {
+      translateElement(elements[i]);
+    }
+
+    document.documentElement.lang = currentLanguage;
+  }
+
+  // Lets other parts of this file run some code every time the language
+  // changes (e.g. to update a button label).
+  function onLanguageChange(callback) {
+    languageChangeListeners.push(callback);
+  }
+
+  // Switches the whole page to "de" or "en".
+  function setLanguage(next) {
+    if (next !== 'de' && next !== 'en') return;
+    if (next === currentLanguage) return;
+
+    currentLanguage = next;
+    saveLanguageChoice(currentLanguage);
+    translatePage();
+
+    for (var i = 0; i < languageChangeListeners.length; i++) {
+      languageChangeListeners[i](currentLanguage);
+    }
+  }
+
+  // Shorthand used by the JavaScript-generated bits of the page (like the
+  // slider's dot labels) that don't have data-en attributes of their own:
+  // translate('Deutsch', 'English') returns whichever one is current.
+  function translate(germanText, englishText) {
+    if (currentLanguage === 'en') return englishText;
+    return germanText;
+  }
+
+  currentLanguage = pickStartingLanguage();
+  translatePage();
 
   /* ---------- The DE / EN switch in the header ---------- */
-  (function langSwitch() {
+  function setupLanguageButtons() {
     var group = document.querySelector('.lang');
     if (!group) return;
 
-    var buttons = Array.prototype.slice.call(group.querySelectorAll('[data-lang]'));
+    var buttons = group.querySelectorAll('[data-lang]');
 
-    function sync() {
-      buttons.forEach(function (btn) {
-        btn.setAttribute('aria-pressed', String(btn.getAttribute('data-lang') === i18n.current()));
-      });
+    function updateButtonState() {
+      for (var i = 0; i < buttons.length; i++) {
+        var button = buttons[i];
+        var isActiveLanguage = button.getAttribute('data-lang') === currentLanguage;
+        button.setAttribute('aria-pressed', String(isActiveLanguage));
+      }
     }
 
-    group.addEventListener('click', function (e) {
-      var btn = e.target.closest('[data-lang]');
-      if (btn) i18n.set(btn.getAttribute('data-lang'));
+    group.addEventListener('click', function (event) {
+      var button = event.target.closest('[data-lang]');
+      if (button) setLanguage(button.getAttribute('data-lang'));
     });
 
-    i18n.onChange(sync);
-    sync();
-  }());
+    onLanguageChange(updateButtonState);
+    updateButtonState();
+  }
 
-  /* ---------- Header: solid once scrolled past the hero top ---------- */
-  (function header() {
-    var el = document.querySelector('.header');
-    if (!el || el.classList.contains('header--static')) return;
+  /* ---------- Header: solid background once scrolled past the hero top --- */
+  function setupHeaderBackground() {
+    var header = document.querySelector('.header');
+    if (!header) return;
+    if (header.classList.contains('header--static')) return;
 
-    var ticking = false;
-    function update() {
-      el.classList.toggle('header--solid', window.scrollY > 40);
-      ticking = false;
+    var updateIsScheduled = false;
+
+    function updateHeader() {
+      if (window.scrollY > 40) {
+        header.classList.add('header--solid');
+      } else {
+        header.classList.remove('header--solid');
+      }
+      updateIsScheduled = false;
     }
-    window.addEventListener('scroll', function () {
-      if (!ticking) { window.requestAnimationFrame(update); ticking = true; }
-    }, { passive: true });
-    update();
-  }());
 
-  /* ---------- Mobile navigation ---------- */
-  (function nav() {
-    var toggle = document.querySelector('.nav-toggle');
+    window.addEventListener('scroll', function () {
+      // Only schedule one update per animation frame, however many scroll
+      // events fire in between — this keeps scrolling smooth.
+      if (!updateIsScheduled) {
+        window.requestAnimationFrame(updateHeader);
+        updateIsScheduled = true;
+      }
+    }, { passive: true });
+
+    updateHeader();
+  }
+
+  /* ---------- Mobile navigation (the slide-out menu panel) ---------- */
+  function setupMobileNav() {
+    var toggleButton = document.querySelector('.nav-toggle');
     var panel = document.querySelector('.nav');
-    if (!toggle || !panel) return;
+    if (!toggleButton || !panel) return;
 
     var body = document.body;
     var html = document.documentElement;
-    var lockedAt = 0;
+    var scrollPositionWhenOpened = 0;
 
-    // Pin the page instead of relying on overflow:hidden, which mobile
-    // browsers ignore on <body> - otherwise the page behind the panel keeps
-    // scrolling and you land somewhere else when it closes.
-    function setOpen(open) {
-      if (open === body.classList.contains('nav-open')) return;
-
-      if (open) {
-        lockedAt = window.pageYOffset || html.scrollTop || 0;
-        body.style.top = -lockedAt + 'px';
-        body.classList.add('nav-open', 'is-scroll-locked');
+    function updateToggleLabel() {
+      var isOpen = body.classList.contains('nav-open');
+      if (isOpen) {
+        toggleButton.setAttribute('aria-label', translate('Menü schließen', 'Close menu'));
       } else {
-        body.classList.remove('nav-open', 'is-scroll-locked');
-        body.style.top = '';
-        var behavior = html.style.scrollBehavior;
-        html.style.scrollBehavior = 'auto';   // defeat scroll-behavior: smooth
-        window.scrollTo(0, lockedAt);
-        html.style.scrollBehavior = behavior;
+        toggleButton.setAttribute('aria-label', translate('Menü öffnen', 'Open menu'));
       }
+    }
+    onLanguageChange(updateToggleLabel);
 
-      toggle.setAttribute('aria-expanded', String(open));
-      label();
+    function openMenu() {
+      if (body.classList.contains('nav-open')) return;
+
+      // Remember where the visitor was, then pin the page at that spot.
+      // Mobile browsers ignore "overflow: hidden" on <body>, so without
+      // this trick the page behind the menu panel would keep scrolling.
+      scrollPositionWhenOpened = window.pageYOffset || html.scrollTop || 0;
+      body.style.top = -scrollPositionWhenOpened + 'px';
+      body.classList.add('nav-open', 'is-scroll-locked');
+
+      toggleButton.setAttribute('aria-expanded', 'true');
+      updateToggleLabel();
     }
 
-    function label() {
-      var open = body.classList.contains('nav-open');
-      toggle.setAttribute('aria-label', open ? i18n.t('Menü schließen', 'Close menu')
-                                             : i18n.t('Menü öffnen', 'Open menu'));
+    function closeMenu() {
+      if (!body.classList.contains('nav-open')) return;
+
+      body.classList.remove('nav-open', 'is-scroll-locked');
+      body.style.top = '';
+
+      // Jump back to where the visitor was, without a smooth-scroll
+      // animation fighting us on the way there.
+      var previousScrollBehavior = html.style.scrollBehavior;
+      html.style.scrollBehavior = 'auto';
+      window.scrollTo(0, scrollPositionWhenOpened);
+      html.style.scrollBehavior = previousScrollBehavior;
+
+      toggleButton.setAttribute('aria-expanded', 'false');
+      updateToggleLabel();
     }
-    i18n.onChange(label);
 
-    toggle.addEventListener('click', function () {
-      setOpen(!body.classList.contains('nav-open'));
-    });
-
-    panel.addEventListener('click', function (e) {
-      if (e.target.closest('a')) setOpen(false);
-    });
-
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && body.classList.contains('nav-open')) {
-        setOpen(false);
-        toggle.focus();
+    toggleButton.addEventListener('click', function () {
+      if (body.classList.contains('nav-open')) {
+        closeMenu();
+      } else {
+        openMenu();
       }
     });
 
-    // Reset when resizing back up to the desktop layout.
-    window.matchMedia('(min-width: 901px)').addEventListener('change', function (e) {
-      if (e.matches) setOpen(false);
+    // Clicking a link inside the panel should close it.
+    panel.addEventListener('click', function (event) {
+      if (event.target.closest('a')) closeMenu();
     });
-  }());
 
-  /* ---------- Hero slider ---------- */
-  (function hero() {
-    var slides = Array.prototype.slice.call(document.querySelectorAll('.hero__slide'));
-    var dotWrap = document.querySelector('.hero__dots');
+    // The Escape key closes the panel too.
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape' && body.classList.contains('nav-open')) {
+        closeMenu();
+        toggleButton.focus();
+      }
+    });
+
+    // If the window is resized back up to desktop width, make sure the
+    // mobile panel isn't left open behind the desktop navigation.
+    var desktopQuery = window.matchMedia('(min-width: 901px)');
+    desktopQuery.addEventListener('change', function (event) {
+      if (event.matches) closeMenu();
+    });
+  }
+
+  /* ---------- Hero slider (the fading photos on the homepage) ---------- */
+  function setupHeroSlider() {
+    var slides = document.querySelectorAll('.hero__slide');
+    var dotsContainer = document.querySelector('.hero__dots');
     if (slides.length < 2) return;
 
-    var index = 0;
+    var currentIndex = 0;
     var timer = null;
-    var DELAY = 6500;
+    var DELAY_MS = 6500;
+    var dots = [];
 
-    function dotLabel(i) {
-      return i18n.t('Bild ' + (i + 1) + ' von ' + slides.length,
-                    'Image ' + (i + 1) + ' of ' + slides.length);
+    function dotLabel(index) {
+      return translate(
+        'Bild ' + (index + 1) + ' von ' + slides.length,
+        'Image ' + (index + 1) + ' of ' + slides.length
+      );
     }
 
-    var dots = slides.map(function (_, i) {
-      var b = document.createElement('button');
-      b.type = 'button';
-      b.setAttribute('role', 'tab');
-      b.setAttribute('aria-label', dotLabel(i));
-      b.addEventListener('click', function () { go(i); restart(); });
-      if (dotWrap) dotWrap.appendChild(b);
-      return b;
-    });
+    function showSlide(index) {
+      slides[currentIndex].classList.remove('is-active');
+      dots[currentIndex].setAttribute('aria-selected', 'false');
 
-    function go(next) {
-      slides[index].classList.remove('is-active');
-      dots[index].setAttribute('aria-selected', 'false');
-      index = (next + slides.length) % slides.length;
-      slides[index].classList.add('is-active');
-      dots[index].setAttribute('aria-selected', 'true');
+      // Wrap around: one before the first slide is the last slide, and
+      // one after the last slide is the first slide again.
+      currentIndex = (index + slides.length) % slides.length;
+
+      slides[currentIndex].classList.add('is-active');
+      dots[currentIndex].setAttribute('aria-selected', 'true');
     }
 
-    function restart() {
+    function restartTimer() {
       window.clearInterval(timer);
-      if (!reduceMotion) timer = window.setInterval(function () { go(index + 1); }, DELAY);
+      if (!reduceMotion) {
+        timer = window.setInterval(function () {
+          showSlide(currentIndex + 1);
+        }, DELAY_MS);
+      }
     }
 
-    go(0);
-    restart();
+    // Returns a click handler for one dot button that jumps straight to
+    // "index". Written as its own function so each button gets the right
+    // index, instead of all of them sharing the last value of a loop
+    // variable.
+    function makeDotClickHandler(index) {
+      return function () {
+        showSlide(index);
+        restartTimer();
+      };
+    }
 
-    i18n.onChange(function () {
-      dots.forEach(function (b, i) { b.setAttribute('aria-label', dotLabel(i)); });
+    // Build one dot button per slide.
+    for (var i = 0; i < slides.length; i++) {
+      var dot = document.createElement('button');
+      dot.type = 'button';
+      dot.setAttribute('role', 'tab');
+      dot.setAttribute('aria-label', dotLabel(i));
+      dot.addEventListener('click', makeDotClickHandler(i));
+
+      if (dotsContainer) dotsContainer.appendChild(dot);
+      dots.push(dot);
+    }
+
+    showSlide(0);
+    restartTimer();
+
+    onLanguageChange(function () {
+      for (var i = 0; i < dots.length; i++) {
+        dots[i].setAttribute('aria-label', dotLabel(i));
+      }
     });
 
-    // Pause while the tab is hidden so slides don't race in the background.
+    // Pause the slideshow while the browser tab is hidden, so slides
+    // don't silently change several times in the background.
     document.addEventListener('visibilitychange', function () {
-      if (document.hidden) window.clearInterval(timer);
-      else restart();
+      if (document.hidden) {
+        window.clearInterval(timer);
+      } else {
+        restartTimer();
+      }
     });
-  }());
+  }
 
-  /* ---------- Reveal on scroll ---------- */
-  (function reveal() {
+  /* ---------- Fade sections in as you scroll down to them ---------- */
+  function setupScrollReveal() {
     var items = document.querySelectorAll('.reveal');
-    if (!items.length) return;
+    if (items.length === 0) return;
 
     if (reduceMotion || !('IntersectionObserver' in window)) {
-      items.forEach(function (el) { el.classList.add('is-visible'); });
+      // No animation support, or the visitor asked for reduced motion —
+      // just show everything immediately instead of animating it in.
+      for (var i = 0; i < items.length; i++) {
+        items[i].classList.add('is-visible');
+      }
       return;
     }
 
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (!entry.isIntersecting) return;
-        entry.target.classList.add('is-visible');
-        io.unobserve(entry.target);
-      });
+    var observer = new IntersectionObserver(function (entries) {
+      for (var i = 0; i < entries.length; i++) {
+        var entry = entries[i];
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          // Once it has appeared, we don't need to keep watching it.
+          observer.unobserve(entry.target);
+        }
+      }
     }, { rootMargin: '0px 0px -12% 0px', threshold: 0.08 });
 
-    items.forEach(function (el, i) {
-      el.style.transitionDelay = (i % 4) * 90 + 'ms';
-      io.observe(el);
-    });
-  }());
-
-  /* ---------- Lightbox for the scanned menu pages ---------- */
-  (function lightbox() {
-    var triggers = Array.prototype.slice.call(document.querySelectorAll('[data-full]'));
-    if (!triggers.length) return;
-
-    // Sections that continue on the same scanned page share one trigger image,
-    // so the gallery holds each page once and every trigger opens its own page.
-    var cards = [];
-    triggers.forEach(function (el) {
-      if (indexOfPage(el.getAttribute('data-full')) < 0) cards.push(el);
-    });
-
-    function indexOfPage(src) {
-      for (var i = 0; i < cards.length; i++) {
-        if (cards[i].getAttribute('data-full') === src) return i;
-      }
-      return -1;
+    for (var j = 0; j < items.length; j++) {
+      // Items revealed together get a slightly different delay, so they
+      // don't all fade in at exactly the same instant.
+      items[j].style.transitionDelay = (j % 4) * 90 + 'ms';
+      observer.observe(items[j]);
     }
+  }
 
-    var lastFocus = null;
-    var current = 0;
+  /* ---------- Map: only contact OpenStreetMap once the visitor asks ---------- */
+  function setupMapConsent() {
+    var frame = document.querySelector('[data-map-src]');
+    if (!frame) return;
+    var button = frame.querySelector('[data-map-load]');
 
-    var box = document.createElement('div');
-    box.className = 'lightbox';
-    box.setAttribute('role', 'dialog');
-    box.setAttribute('aria-modal', 'true');
-    box.setAttribute('aria-label', 'Speisekarte in voller Größe');
-    box.setAttribute('data-en-aria-label', 'Menu page at full size');
-    box.innerHTML =
-      '<div class="lightbox__bar">' +
-        '<span class="lightbox__title"></span>' +
-        '<div class="lightbox__actions">' +
-          '<button type="button" class="lightbox__btn" data-lb="prev" aria-label="Vorherige Seite" data-en-aria-label="Previous page">' +
-            '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>' +
-          '</button>' +
-          '<button type="button" class="lightbox__btn" data-lb="next" aria-label="Nächste Seite" data-en-aria-label="Next page">' +
-            '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>' +
-          '</button>' +
-          '<a class="lightbox__btn" data-lb="open" href="#" target="_blank" rel="noopener" aria-label="Bild in neuem Tab öffnen" data-en-aria-label="Open image in a new tab">' +
-            '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14L21 3"/></svg>' +
-          '</a>' +
-          '<button type="button" class="lightbox__btn" data-lb="close" aria-label="Schließen" data-en-aria-label="Close">' +
-            '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>' +
-          '</button>' +
-        '</div>' +
-      '</div>' +
-      '<div class="lightbox__stage"><img alt=""></div>';
-    document.body.appendChild(box);
-    i18n.apply(box);
-
-    var img = box.querySelector('.lightbox__stage img');
-    var title = box.querySelector('.lightbox__title');
-    var openLink = box.querySelector('[data-lb="open"]');
-    var stage = box.querySelector('.lightbox__stage');
-    var closeBtn = box.querySelector('[data-lb="close"]');
-
-    function show(i) {
-      current = (i + cards.length) % cards.length;
-      var card = cards[current];
-      var label = card.getAttribute('data-title') || '';
-      img.src = card.getAttribute('data-full');
-      img.alt = label;
-      title.textContent = label + '  ·  ' + (current + 1) + '/' + cards.length;
-      openLink.href = card.getAttribute('data-full');
-      stage.scrollTop = 0;
-    }
-
-    function open(i) {
-      lastFocus = document.activeElement;
-      show(i);
-      box.classList.add('is-open');
-      document.body.style.overflow = 'hidden';
-      closeBtn.focus();
-    }
-
-    function close() {
-      box.classList.remove('is-open');
-      document.body.style.overflow = '';
-      img.removeAttribute('src');
-      if (lastFocus) lastFocus.focus();
-    }
-
-    triggers.forEach(function (el) {
-      el.addEventListener('click', function () {
-        open(Math.max(0, indexOfPage(el.getAttribute('data-full'))));
-      });
+    button.addEventListener('click', function () {
+      var iframe = document.createElement('iframe');
+      iframe.src = frame.getAttribute('data-map-src');
+      iframe.title = translate(frame.getAttribute('data-map-title'), frame.getAttribute('data-map-title-en'));
+      iframe.referrerPolicy = 'no-referrer-when-downgrade';
+      frame.innerHTML = '';
+      frame.appendChild(iframe);
+      iframe.focus();
     });
 
-    // The page titles come from the cards, which i18n has just re-labelled.
-    i18n.onChange(function () {
-      if (box.classList.contains('is-open')) show(current);
-    });
-
-    box.addEventListener('click', function (e) {
-      var action = e.target.closest('[data-lb]');
-      if (action) {
-        var kind = action.getAttribute('data-lb');
-        if (kind === 'close') close();
-        if (kind === 'prev') show(current - 1);
-        if (kind === 'next') show(current + 1);
-        return;
-      }
-      // Clicking the backdrop (but not the image) closes.
-      if (e.target === stage || e.target === box) close();
-    });
-
-    document.addEventListener('keydown', function (e) {
-      if (!box.classList.contains('is-open')) return;
-      if (e.key === 'Escape') close();
-      if (e.key === 'ArrowLeft') show(current - 1);
-      if (e.key === 'ArrowRight') show(current + 1);
-      if (e.key === 'Tab') {
-        // Keep focus inside the dialog.
-        var focusables = box.querySelectorAll('button, a[href]');
-        var first = focusables[0];
-        var last = focusables[focusables.length - 1];
-        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
-        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    onLanguageChange(function () {
+      var iframe = frame.querySelector('iframe');
+      if (iframe) {
+        iframe.title = translate(frame.getAttribute('data-map-title'), frame.getAttribute('data-map-title-en'));
       }
     });
-  }());
+  }
 
-  /* ---------- Mark today's row in the opening hours ---------- */
-  (function today() {
+  /* ---------- Mark today's row in the opening-hours table ---------- */
+  function markTodayInHours() {
     var rows = document.querySelectorAll('[data-day]');
-    if (!rows.length) return;
-    var d = String(new Date().getDay());
-    rows.forEach(function (row) {
-      if (row.getAttribute('data-day').split(',').indexOf(d) > -1) {
-        row.classList.add('is-today');
+    if (rows.length === 0) return;
+
+    // getDay() returns 0 for Sunday, 1 for Monday, and so on.
+    var today = String(new Date().getDay());
+
+    for (var i = 0; i < rows.length; i++) {
+      var days = rows[i].getAttribute('data-day').split(',');
+      if (days.indexOf(today) > -1) {
+        rows[i].classList.add('is-today');
       }
-    });
-  }());
+    }
+  }
+
+  /* ---------- Run every feature ---------- */
+  setupLanguageButtons();
+  setupHeaderBackground();
+  setupMobileNav();
+  setupHeroSlider();
+  setupScrollReveal();
+  setupMapConsent();
+  markTodayInHours();
 }());
