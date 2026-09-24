@@ -428,7 +428,7 @@ body.is-scroll-locked { position: fixed; left: 0; right: 0; width: 100%; }
   .lang { order: 0; margin-left: auto; }
   .lang__btn { padding: .3rem .55rem; font-size: .64rem; letter-spacing: .1em; }
   /* JS pins the body while the panel is open; this is the no-JS-yet fallback. */
-  body.nav-open { overflow: clip; }
+  body.nav-open { overflow: hidden; }
 }
 
 /* The smallest phones cannot hold brand, tagline and switch on one line -
@@ -446,7 +446,7 @@ body.is-scroll-locked { position: fixed; left: 0; right: 0; width: 100%; }
   display: grid; align-items: center;
   color: #fff;
   isolation: isolate;
-  overflow: clip;
+  overflow: hidden;
 }
 .hero__slides { position: absolute; inset: 0; z-index: -2; }
 .hero__slide {
@@ -511,7 +511,7 @@ body.is-scroll-locked { position: fixed; left: 0; right: 0; width: 100%; }
   background: var(--ink); color: #fff;
   padding: clamp(7rem, 5rem + 8vw, 10rem) 0 clamp(3rem, 2rem + 3vw, 4.5rem);
   text-align: center;
-  isolation: isolate; overflow: clip;
+  isolation: isolate; overflow: hidden;
 }
 .page-head img {
   position: absolute; inset: 0; z-index: -2;
@@ -604,7 +604,7 @@ a.card:hover .card__more svg { transform: translateX(4px); }
 @media (max-width: 600px) { .photo-row { grid-template-columns: 1fr; } }
 
 .photo-set figure {
-  margin: 0; overflow: clip; border-radius: var(--radius);
+  margin: 0; overflow: hidden; border-radius: var(--radius);
   background: var(--cream-deep);
 }
 .photo-set img {
@@ -761,7 +761,7 @@ a.card:hover .card__more svg { transform: translateX(4px); }
 .detail-list .note { display: block; margin-top: .3rem; font-size: .86rem; color: var(--muted); }
 
 .map-frame {
-  border-radius: var(--radius); overflow: clip;
+  border-radius: var(--radius); overflow: hidden;
   border: 1px solid var(--line); box-shadow: var(--shadow-sm);
   background: var(--cream-deep);
   aspect-ratio: 4 / 3;
