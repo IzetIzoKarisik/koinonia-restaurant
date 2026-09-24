@@ -608,7 +608,6 @@ a.card:hover .card__more svg { transform: translateX(4px); }
    mis-place the first auto-placed row. */
 .photo-set { display: flex; flex-direction: column; gap: 1.1rem; }
 .photo-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.1rem; }
-.photo-row--two { grid-template-columns: repeat(2, 1fr); }
 
 /* One large photo on the left, two 4:3 tiles stacked on the right. The two
    tiles set the row height; the large photo stretches to fill it. */
@@ -625,6 +624,7 @@ a.card:hover .card__more svg { transform: translateX(4px); }
 @media (max-width: 600px) {
   .photo-row, .photo-feature { grid-template-columns: 1fr; }
   .photo-set .photo-feature__main { grid-row: auto; aspect-ratio: 4 / 3; }
+  .photo-set .photo-wide { aspect-ratio: 4 / 3; }
 }
 
 .photo-set figure {
@@ -638,7 +638,8 @@ a.card:hover .card__more svg { transform: translateX(4px); }
 .photo-set figure:hover img { transform: scale(1.05); }
 
 .photo-row figure { aspect-ratio: 4 / 3; }
-.photo-row--two figure { aspect-ratio: 3 / 2; }
+/* A single landscape closing the set, full width. */
+.photo-wide { aspect-ratio: 21 / 9; }
 
 /* Portraits lose their top and bottom to the 4:3 tile, so each one is
    anchored on the part that has to survive the crop. */
