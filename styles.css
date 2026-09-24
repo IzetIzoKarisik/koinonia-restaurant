@@ -175,7 +175,7 @@ body {
   line-height: 1.7;
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
-  overflow-x: clip;
+  overflow-x: hidden;
 }
 img { max-width: 100%; height: auto; display: block; }
 a { color: inherit; }
