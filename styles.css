@@ -461,6 +461,10 @@ body.is-scroll-locked { position: fixed; left: 0; right: 0; width: 100%; }
   transition: transform 9s linear;
 }
 .hero__slide.is-active img { transform: scale(1); }
+/* Portrait photos lose most of their height on a wide screen, so each is
+   anchored on the part that has to survive the crop. */
+.hero__slide--pin-top img { object-position: center 22%; }
+.hero__slide--pin-mid img { object-position: center 45%; }
 .hero::after {
   content: ""; position: absolute; inset: 0; z-index: -1;
   background:
@@ -547,6 +551,11 @@ body.is-scroll-locked { position: fixed; left: 0; right: 0; width: 100%; }
   border: 1px solid var(--gold); border-radius: var(--radius);
   z-index: -1;
 }
+/* The frame pokes out past the right edge; on a phone that is wider than
+   the page gutter and makes the whole page scroll sideways. */
+@media (max-width: 600px) {
+  .figure-stack::before { inset: 1rem -1rem -1rem 1rem; }
+}
 .figure-caption {
   margin-top: 1.5rem; font-size: .82rem; color: var(--muted);
   letter-spacing: .04em;
@@ -593,15 +602,30 @@ a.card:hover .card__num { color: var(--gold); }
 .card__more svg { width: 14px; height: 14px; transition: transform .3s var(--ease); }
 a.card:hover .card__more svg { transform: translateX(4px); }
 
-/* ---------- Photo set (tile rows + panorama bands) ---------- */
-/* Bands and tile rows are separate containers stacked in normal flow rather
-   than one grid with full-width spans: a spanning item sitting next to
-   aspect-ratio items makes Chrome mis-place the first auto-placed row. */
+/* ---------- Photo set (feature row + tile rows) ---------- */
+/* Each row is its own container stacked in normal flow rather than one big
+   grid: a spanning item sitting next to aspect-ratio items makes Chrome
+   mis-place the first auto-placed row. */
 .photo-set { display: flex; flex-direction: column; gap: 1.1rem; }
 .photo-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.1rem; }
-/* Each group is three tiles, so two columns would always strand one on a
-   half-empty row. The three-up holds until it has to give, then goes to one. */
-@media (max-width: 600px) { .photo-row { grid-template-columns: 1fr; } }
+.photo-row--two { grid-template-columns: repeat(2, 1fr); }
+
+/* One large photo on the left, two 4:3 tiles stacked on the right. The two
+   tiles set the row height; the large photo stretches to fill it. */
+.photo-feature {
+  display: grid; grid-template-columns: 2fr 1fr; grid-template-rows: auto auto;
+  gap: 1.1rem;
+}
+.photo-feature figure { aspect-ratio: 4 / 3; }
+.photo-feature__main { grid-column: 1; grid-row: 1 / span 2; position: relative; }
+.photo-set .photo-feature__main { aspect-ratio: auto; }
+.photo-feature__main img { position: absolute; inset: 0; }
+
+/* The three-up holds until it has to give, then everything goes to one. */
+@media (max-width: 600px) {
+  .photo-row, .photo-feature { grid-template-columns: 1fr; }
+  .photo-set .photo-feature__main { grid-row: auto; aspect-ratio: 4 / 3; }
+}
 
 .photo-set figure {
   margin: 0; overflow: hidden; border-radius: var(--radius);
@@ -614,7 +638,7 @@ a.card:hover .card__more svg { transform: translateX(4px); }
 .photo-set figure:hover img { transform: scale(1.05); }
 
 .photo-row figure { aspect-ratio: 4 / 3; }
-.photo-band { aspect-ratio: 4 / 1; }
+.photo-row--two figure { aspect-ratio: 3 / 2; }
 
 /* Portraits lose their top and bottom to the 4:3 tile, so each one is
    anchored on the part that has to survive the crop. */
