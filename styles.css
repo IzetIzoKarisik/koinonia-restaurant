@@ -465,6 +465,12 @@ body.is-scroll-locked { position: fixed; left: 0; right: 0; width: 100%; }
    anchored on the part that has to survive the crop. */
 .hero__slide--pin-top img { object-position: center 22%; }
 .hero__slide--pin-mid img { object-position: center 45%; }
+/* On landscape screens this slide swaps its portrait photo for the daylight
+   terrace shot, which is much brighter than the interiors; dim it so the
+   white hero text still reads. */
+@media (orientation: landscape) {
+  .hero__slide--daylight img { filter: brightness(.7); }
+}
 .hero::after {
   content: ""; position: absolute; inset: 0; z-index: -1;
   background:
@@ -647,6 +653,37 @@ a.card:hover .card__more svg { transform: translateX(4px); }
 .photo-row .pin-upper img { object-position: center 28%; }
 .photo-row .pin-lower img { object-position: center 62%; }
 
+/* ---------- Garden terrace collage ---------- */
+/* A square photo with a smaller landscape overlapping its lower right corner.
+   The inset stays inside the column (the main photo is narrowed instead), so
+   nothing pokes past the page gutter on a phone. Isolated so the gold frame
+   behind the photo is not painted under the section background. */
+.garden-photos {
+  position: relative; isolation: isolate;
+  max-width: 560px; margin-inline: auto;
+  padding-bottom: 14%;
+}
+.garden-photos figure { margin: 0; overflow: hidden; }
+.garden-photos img { width: 100%; height: 100%; object-fit: cover; }
+.garden-photos__main {
+  width: 84%; aspect-ratio: 1 / 1;
+  border-radius: var(--radius); box-shadow: var(--shadow-lg);
+}
+.garden-photos__inset {
+  position: absolute; right: 0; bottom: 0; width: 50%; aspect-ratio: 4 / 3;
+  border: 6px solid var(--cream); border-radius: calc(var(--radius) + 6px);
+  box-shadow: var(--shadow-md);
+}
+.garden-photos::before {
+  content: ""; position: absolute; z-index: -1;
+  top: 1.6rem; left: 1.6rem; width: 84%; aspect-ratio: 1 / 1;
+  border: 1px solid var(--gold); border-radius: var(--radius);
+}
+@media (max-width: 600px) {
+  .garden-photos::before { top: 1rem; left: 1rem; }
+  .garden-photos__inset { border-width: 4px; }
+}
+
 /* ---------- Menu card grid (scanned pages) ---------- */
 /* ---------- Menu as text (bilingual) ---------- */
 .menu-jump {
@@ -737,6 +774,9 @@ a.card:hover .card__more svg { transform: translateX(4px); }
 .info-block p, .info-block li { color: #c5bcb2; }
 .info-block a { color: #fff; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,.3); }
 .info-block a:hover { border-color: var(--gold); color: var(--gold); }
+/* The square garden photo is cut to 4:3; anchored low so the tables survive. */
+.info-photo { margin: 0 0 1.2rem; aspect-ratio: 4 / 3; overflow: hidden; border-radius: var(--radius); }
+.info-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 65%; }
 
 .hours-list li {
   display: flex; justify-content: space-between; gap: 1.5rem;
