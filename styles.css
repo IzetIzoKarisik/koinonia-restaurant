@@ -465,11 +465,10 @@ body.is-scroll-locked { position: fixed; left: 0; right: 0; width: 100%; }
    anchored on the part that has to survive the crop. */
 .hero__slide--pin-top img { object-position: center 22%; }
 .hero__slide--pin-mid img { object-position: center 45%; }
-/* On landscape screens this slide swaps its portrait photo for the daylight
-   terrace shot, which is much brighter than the interiors; dim it so the
-   white hero text still reads. */
+/* On landscape screens this slide swaps its portrait photo for the evening
+   terrace shot; anchor it low enough to keep the candle-lit tables. */
 @media (orientation: landscape) {
-  .hero__slide--daylight img { filter: brightness(.7); }
+  .hero__slide--terrace img { object-position: center 60%; }
 }
 .hero::after {
   content: ""; position: absolute; inset: 0; z-index: -1;
@@ -551,6 +550,9 @@ body.is-scroll-locked { position: fixed; left: 0; right: 0; width: 100%; }
   box-shadow: var(--shadow-lg);
   aspect-ratio: 4 / 5; object-fit: cover;
 }
+/* A landscape photo in the portrait frame keeps its left side, where the
+   sign and the entrance are. */
+.figure-stack--pin-left img { object-position: 5% center; }
 .figure-stack::before {
   content: ""; position: absolute;
   inset: 1.6rem -1.6rem -1.6rem 1.6rem;
