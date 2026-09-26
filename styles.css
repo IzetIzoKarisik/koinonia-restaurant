@@ -746,6 +746,9 @@ a.card:hover .card__more svg { transform: translateX(4px); }
 .hours-list li:last-child { border-bottom: 0; }
 .hours-list dt, .hours-list .day { color: #fff; font-weight: 500; }
 .hours-list .time { color: #c5bcb2; text-align: right; font-variant-numeric: tabular-nums; }
+.hours-list li.is-today { border-color: rgba(192,146,66,.4); }
+.hours-list li.is-today .day,
+.hours-list li.is-today .time { color: var(--gold); }
 .badge {
   display: inline-block; margin-top: 1rem;
   background: rgba(192,146,66,.14); color: var(--gold);
