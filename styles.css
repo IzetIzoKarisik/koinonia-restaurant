@@ -465,6 +465,9 @@ body.is-scroll-locked { position: fixed; left: 0; right: 0; width: 100%; }
    anchored on the part that has to survive the crop. */
 .hero__slide--pin-top img { object-position: center 22%; }
 .hero__slide--pin-mid img { object-position: center 45%; }
+/* The night facade keeps the lit windows on a wide screen and the sign and
+   entrance on a phone. */
+.hero__slide--facade img { object-position: 5% 75%; }
 /* On landscape screens this slide swaps its portrait photo for the evening
    terrace shot; anchor it low enough to keep the candle-lit tables. */
 @media (orientation: landscape) {
