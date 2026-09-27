@@ -26,6 +26,11 @@
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+<!-- Icons used on this page (see .icon in styles.css) -->
+<svg style="display:none">
+  <symbol id="icon-phone" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.7 2.7a2 2 0 0 1-.5 2.1L8.1 9.7a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.4 1.8.6 2.7.7a2 2 0 0 1 1.9 2.2z"/></symbol>
+  <symbol id="icon-bag" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18M16 10a4 4 0 0 1-8 0"/></symbol>
+</svg>
 <a class="skip-link" href="#main" data-en="Skip to content">Zum Inhalt springen</a>
 <header class="header">
   <div class="wrap header__inner">
@@ -54,7 +59,7 @@
         <li><a class="nav__link" href="weine.html" data-en="Wines">Weine</a></li>
         <li><a class="nav__link" href="kontakt.html" data-en="Contact">Kontakt</a></li>
       </ul>
-      <a class="nav__cta" href="tel:+4314795964"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.7 2.7a2 2 0 0 1-.5 2.1L8.1 9.7a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.4 1.8.6 2.7.7a2 2 0 0 1 1.9 2.2z"/></svg><span>+43 1 479 5964</span></a>
+      <a class="nav__cta" href="tel:+4314795964"><svg class="icon" aria-hidden="true"><use href="#icon-phone"></use></svg><span>+43 1 479 5964</span></a>
     </nav>
   </div>
 </header>
@@ -78,94 +83,83 @@
         </div>
         <p class="menu-block__note" data-en="Mon–Fri 11:30–15:00, except public holidays · Lunch menu with espresso + 2,00 or cake + 3,50 · Our staff will gladly tell you about the allergens.">Mo–Fr 11:30–15:00, außer Feiertage · Mittagsmenü mit Espresso + 2,00 oder Torte + 3,50 · Unser Personal informiert Sie über die Allergene.</p>
         <ul class="dishes">
-        <li class="dish">
-          <div class="dish__row">
-            <h3 class="dish__name">1. Sushi Bento</h3>
-            <span class="dish__lead" aria-hidden="true"></span>
-            <span class="dish__price">13,50</span>
-          </div>
-          <p class="dish__desc"><span data-en="5 pcs sushi, sashimi, maki">5 St. Sushi, Sashimi, Maki</span> <span class="dish__aller" aria-label="Allergene: A B D N" data-en-aria-label="Allergens: A B D N">A B D N</span></p>
-        </li>
-        <li class="dish">
-          <div class="dish__row">
-            <h3 class="dish__name">2. Sushi Set</h3>
-            <span class="dish__lead" aria-hidden="true"></span>
-            <span class="dish__price">11,50</span>
-          </div>
-          <p class="dish__desc"><span data-en="5 pcs sushi, 3 pcs maki">5 St. Sushi, 3 St. Maki</span> <span class="dish__aller" aria-label="Allergene: B D" data-en-aria-label="Allergens: B D">B D</span></p>
-        </li>
-        <li class="dish">
-          <div class="dish__row">
-            <h3 class="dish__name">3. Maki Bento</h3>
-            <span class="dish__lead" aria-hidden="true"></span>
-            <span class="dish__price">12,50</span>
-          </div>
-          <p class="dish__desc"><span data-en="assorted maki">verschiedene Makis</span> <span class="dish__aller" aria-label="Allergene: D N" data-en-aria-label="Allergens: D N">D N</span></p>
-        </li>
-        <li class="dish">
-          <div class="dish__row">
-            <h3 class="dish__name" data-en="4. Luxury Bento">4. Luxus Bento</h3>
-            <span class="dish__lead" aria-hidden="true"></span>
-            <span class="dish__price">15,00</span>
-          </div>
-          <p class="dish__desc"><span data-en="5 pcs sushi, tempura, glass noodles with beef and vegetables">5 St. Sushi, Tempura, Glasnudeln mit Rindfleisch und Gemüse</span> <span class="dish__aller" aria-label="Allergene: A B D F N" data-en-aria-label="Allergens: A B D F N">A B D F N</span></p>
-        </li>
-        <li class="dish">
-          <div class="dish__row">
-            <h3 class="dish__name">5. Bulgogi Bento</h3>
-            <span class="dish__lead" aria-hidden="true"></span>
-            <span class="dish__price">13,50</span>
-          </div>
-          <p class="dish__desc"><span data-en="finely fried marinated beef with 2 pcs sushi and 3 pcs maki">mariniertes Rindfleisch fein gebraten und 2 St. Sushi, 3 St. Maki</span> <span class="dish__aller" aria-label="Allergene: A D F N" data-en-aria-label="Allergens: A D F N">A D F N</span></p>
-        </li>
-        <li class="dish">
-          <div class="dish__row">
-            <h3 class="dish__name" data-en="6. Salmon Teriyaki Bento">6. Lachs Teriyaki Bento</h3>
-            <span class="dish__lead" aria-hidden="true"></span>
-            <span class="dish__price">13,50</span>
-          </div>
-          <p class="dish__desc"><span data-en="grilled salmon with vegetables, 2 pcs sushi and 3 pcs maki">gegrillter Lachs mit Gemüse und 2 St. Sushi, 3 St. Maki</span> <span class="dish__aller" aria-label="Allergene: A D F N" data-en-aria-label="Allergens: A D F N">A D F N</span></p>
-        </li>
-        <li class="dish">
-          <div class="dish__row">
-            <h3 class="dish__name">7. Tori Teriyaki Bento</h3>
-            <span class="dish__lead" aria-hidden="true"></span>
-            <span class="dish__price">12,50</span>
-          </div>
-          <p class="dish__desc"><span data-en="grilled chicken with vegetables, 2 pcs sushi and 3 pcs maki">gegrilltes Hühnerfleisch mit Gemüse und 2 St. Sushi, 3 St. Maki</span> <span class="dish__aller" aria-label="Allergene: A D F N" data-en-aria-label="Allergens: A D F N">A D F N</span></p>
-        </li>
-        <li class="dish">
-          <div class="dish__row">
-            <h3 class="dish__name">8. Yaki Soba</h3>
-            <span class="dish__lead" aria-hidden="true"></span>
-            <span class="dish__price">10,90</span>
-          </div>
-          <p class="dish__desc"><span data-en="noodles finely fried with chicken and vegetables">Nudeln mit Hühnerfleisch und Gemüse feingebraten</span> <span class="dish__aller" aria-label="Allergene: A F N" data-en-aria-label="Allergens: A F N">A F N</span></p>
-        </li>
-        <li class="dish">
-          <div class="dish__row">
-            <h3 class="dish__name">9. Ramen</h3>
-            <span class="dish__lead" aria-hidden="true"></span>
-            <span class="dish__price">10,90</span>
-          </div>
-          <p class="dish__desc"><span data-en="noodle soup with chicken and egg">Nudelsuppe mit Hühnerfleisch, Ei</span> <span class="dish__aller" aria-label="Allergene: A C F" data-en-aria-label="Allergens: A C F">A C F</span></p>
-        </li>
-        <li class="dish">
-          <div class="dish__row">
-            <h3 class="dish__name" data-en="10. Duck">10. Ente</h3>
-            <span class="dish__lead" aria-hidden="true"></span>
-            <span class="dish__price">12,50</span>
-          </div>
-          <p class="dish__desc"><span data-en="crispy fried duck with vegetables and teriyaki sauce">knusprig frittierte Enten mit Gemüse und Teriyaki Sauce</span> <span class="dish__aller" aria-label="Allergene: A F N" data-en-aria-label="Allergens: A F N">A F N</span></p>
-        </li>
-        <li class="dish">
-          <div class="dish__row">
-            <h3 class="dish__name" data-en="11. Menu of the Day">11. Tagesmenü</h3>
-            <span class="dish__lead" aria-hidden="true"></span>
-            <span class="dish__price">13,50</span>
-          </div>
-          <p class="dish__desc"><span data-en="Please ask in advance">Bitte! Vorheranfragen</span></p>
-        </li>
+          <li class="dish">
+            <div class="dish__row">
+              <h3 class="dish__name">1. Sushi Bento</h3>
+              <span class="dish__price">13,50</span>
+            </div>
+            <p class="dish__desc"><span data-en="5 pcs sushi, sashimi, maki">5 St. Sushi, Sashimi, Maki</span> <span class="dish__aller" aria-label="Allergene: A B D N" data-en-aria-label="Allergens: A B D N">A B D N</span></p>
+          </li>
+          <li class="dish">
+            <div class="dish__row">
+              <h3 class="dish__name">2. Sushi Set</h3>
+              <span class="dish__price">11,50</span>
+            </div>
+            <p class="dish__desc"><span data-en="5 pcs sushi, 3 pcs maki">5 St. Sushi, 3 St. Maki</span> <span class="dish__aller" aria-label="Allergene: B D" data-en-aria-label="Allergens: B D">B D</span></p>
+          </li>
+          <li class="dish">
+            <div class="dish__row">
+              <h3 class="dish__name">3. Maki Bento</h3>
+              <span class="dish__price">12,50</span>
+            </div>
+            <p class="dish__desc"><span data-en="assorted maki">verschiedene Makis</span> <span class="dish__aller" aria-label="Allergene: D N" data-en-aria-label="Allergens: D N">D N</span></p>
+          </li>
+          <li class="dish">
+            <div class="dish__row">
+              <h3 class="dish__name" data-en="4. Luxury Bento">4. Luxus Bento</h3>
+              <span class="dish__price">15,00</span>
+            </div>
+            <p class="dish__desc"><span data-en="5 pcs sushi, tempura, glass noodles with beef and vegetables">5 St. Sushi, Tempura, Glasnudeln mit Rindfleisch und Gemüse</span> <span class="dish__aller" aria-label="Allergene: A B D F N" data-en-aria-label="Allergens: A B D F N">A B D F N</span></p>
+          </li>
+          <li class="dish">
+            <div class="dish__row">
+              <h3 class="dish__name">5. Bulgogi Bento</h3>
+              <span class="dish__price">13,50</span>
+            </div>
+            <p class="dish__desc"><span data-en="finely fried marinated beef with 2 pcs sushi and 3 pcs maki">mariniertes Rindfleisch fein gebraten und 2 St. Sushi, 3 St. Maki</span> <span class="dish__aller" aria-label="Allergene: A D F N" data-en-aria-label="Allergens: A D F N">A D F N</span></p>
+          </li>
+          <li class="dish">
+            <div class="dish__row">
+              <h3 class="dish__name" data-en="6. Salmon Teriyaki Bento">6. Lachs Teriyaki Bento</h3>
+              <span class="dish__price">13,50</span>
+            </div>
+            <p class="dish__desc"><span data-en="grilled salmon with vegetables, 2 pcs sushi and 3 pcs maki">gegrillter Lachs mit Gemüse und 2 St. Sushi, 3 St. Maki</span> <span class="dish__aller" aria-label="Allergene: A D F N" data-en-aria-label="Allergens: A D F N">A D F N</span></p>
+          </li>
+          <li class="dish">
+            <div class="dish__row">
+              <h3 class="dish__name">7. Tori Teriyaki Bento</h3>
+              <span class="dish__price">12,50</span>
+            </div>
+            <p class="dish__desc"><span data-en="grilled chicken with vegetables, 2 pcs sushi and 3 pcs maki">gegrilltes Hühnerfleisch mit Gemüse und 2 St. Sushi, 3 St. Maki</span> <span class="dish__aller" aria-label="Allergene: A D F N" data-en-aria-label="Allergens: A D F N">A D F N</span></p>
+          </li>
+          <li class="dish">
+            <div class="dish__row">
+              <h3 class="dish__name">8. Yaki Soba</h3>
+              <span class="dish__price">10,90</span>
+            </div>
+            <p class="dish__desc"><span data-en="noodles finely fried with chicken and vegetables">Nudeln mit Hühnerfleisch und Gemüse feingebraten</span> <span class="dish__aller" aria-label="Allergene: A F N" data-en-aria-label="Allergens: A F N">A F N</span></p>
+          </li>
+          <li class="dish">
+            <div class="dish__row">
+              <h3 class="dish__name">9. Ramen</h3>
+              <span class="dish__price">10,90</span>
+            </div>
+            <p class="dish__desc"><span data-en="noodle soup with chicken and egg">Nudelsuppe mit Hühnerfleisch, Ei</span> <span class="dish__aller" aria-label="Allergene: A C F" data-en-aria-label="Allergens: A C F">A C F</span></p>
+          </li>
+          <li class="dish">
+            <div class="dish__row">
+              <h3 class="dish__name" data-en="10. Duck">10. Ente</h3>
+              <span class="dish__price">12,50</span>
+            </div>
+            <p class="dish__desc"><span data-en="crispy fried duck with vegetables and teriyaki sauce">knusprig frittierte Enten mit Gemüse und Teriyaki Sauce</span> <span class="dish__aller" aria-label="Allergene: A F N" data-en-aria-label="Allergens: A F N">A F N</span></p>
+          </li>
+          <li class="dish">
+            <div class="dish__row">
+              <h3 class="dish__name" data-en="11. Menu of the Day">11. Tagesmenü</h3>
+              <span class="dish__price">13,50</span>
+            </div>
+            <p class="dish__desc"><span data-en="Please ask in advance">Bitte! Vorheranfragen</span></p>
+          </li>
         </ul>
       </section>
       <section class="menu-block reveal" id="menues">
@@ -177,7 +171,6 @@
           <article class="set-menu">
             <div class="dish__row">
               <h3 class="dish__name" data-en="Set Menu 1">Menü 1</h3>
-              <span class="dish__lead" aria-hidden="true"></span>
               <span class="dish__price">48,00</span>
             </div>
             <dl class="courses">
@@ -194,7 +187,6 @@
           <article class="set-menu">
             <div class="dish__row">
               <h3 class="dish__name" data-en="Set Menu 2">Menü 2</h3>
-              <span class="dish__lead" aria-hidden="true"></span>
               <span class="dish__price">50,00</span>
             </div>
             <dl class="courses">
@@ -211,7 +203,6 @@
           <article class="set-menu">
             <div class="dish__row">
               <h3 class="dish__name" data-en="Set Menu 3">Menü 3</h3>
-              <span class="dish__lead" aria-hidden="true"></span>
               <span class="dish__price">52,00</span>
             </div>
             <dl class="courses">
@@ -228,7 +219,6 @@
           <article class="set-menu">
             <div class="dish__row">
               <h3 class="dish__name" data-en="Set Menu 4">Menü 4</h3>
-              <span class="dish__lead" aria-hidden="true"></span>
               <span class="dish__price">57,00</span>
             </div>
             <dl class="courses">
@@ -248,7 +238,7 @@
     </div>
   </section>
 
-  <section class="section--tight" style="padding-bottom:clamp(3rem,2rem+4vw,5rem)">
+  <section class="section--tight">
     <div class="wrap">
       <div class="cta-band reveal">
         <div>
@@ -256,8 +246,8 @@
           <p data-en="Reserve a table by phone, or have your order delivered straight to your door.">Reservieren Sie telefonisch einen Tisch oder bestellen Sie direkt nach Hause.</p>
         </div>
         <div class="btn-row">
-          <a class="btn btn--light" href="tel:+4314795964"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.7 2.7a2 2 0 0 1-.5 2.1L8.1 9.7a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.4 1.8.6 2.7.7a2 2 0 0 1 1.9 2.2z"/></svg><span>+43 1 479 5964</span></a>
-          <a class="btn btn--ghost" href="https://www.lieferando.at/speisekarte/restaurant-koinonia" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18M16 10a4 4 0 0 1-8 0"/></svg><span>Lieferando</span></a>
+          <a class="btn btn--light" href="tel:+4314795964"><svg class="icon" aria-hidden="true"><use href="#icon-phone"></use></svg><span>+43 1 479 5964</span></a>
+          <a class="btn btn--ghost" href="https://www.lieferando.at/speisekarte/restaurant-koinonia" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#icon-bag"></use></svg><span>Lieferando</span></a>
         </div>
       </div>
     </div>
@@ -280,7 +270,11 @@
     <div>
       <h3>Navigation</h3>
       <ul class="footer__links">
-        <li><a href="index.html" data-en="Home">Start</a></li><li><a href="speisen.html" data-en="Menu">Speisen</a></li><li><a href="menue.html" data-en="Lunch Menu">Mittagsmenü</a></li><li><a href="weine.html" data-en="Wines">Weine</a></li><li><a href="kontakt.html" data-en="Contact">Kontakt</a></li>
+        <li><a href="index.html" data-en="Home">Start</a></li>
+        <li><a href="speisen.html" data-en="Menu">Speisen</a></li>
+        <li><a href="menue.html" data-en="Lunch Menu">Mittagsmenü</a></li>
+        <li><a href="weine.html" data-en="Wines">Weine</a></li>
+        <li><a href="kontakt.html" data-en="Contact">Kontakt</a></li>
       </ul>
     </div>
 
@@ -292,7 +286,7 @@
         <li><a href="mailto:office@koinonia.co.at">office@koinonia.co.at</a></li>
         <li><a href="https://www.lieferando.at/speisekarte/restaurant-koinonia" target="_blank" rel="noopener" data-en="Delivery via Lieferando">Lieferung über Lieferando</a></li>
       </ul>
-      <p style="margin-top:1.1rem;font-size:.9rem;color:#a9a098"><span data-en="Open daily">Täglich geöffnet</span><br>11:30–15:00 &amp; 17:30–22:30</p>
+      <p class="footer__hours"><span data-en="Open daily">Täglich geöffnet</span><br>11:30–15:00 &amp; 17:30–22:30</p>
     </div>
   </div>
 
@@ -306,6 +300,5 @@
 </footer>
 
 <script src="main.js"></script>
-<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>
