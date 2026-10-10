@@ -338,6 +338,116 @@ function markTodayInOpeningHours() {
 }
 
 
+/* ---------- Cookie consent ----------
+   The banner is built here, so it appears on every page without touching
+   the HTML. The choice ("granted" or "denied") is kept in localStorage.
+   Until the visitor accepts, nothing optional may run: put any future
+   tracking (e.g. Google Analytics) inside loadAnalytics() below and it will
+   only start after "Accept". A footer link lets visitors change their mind. */
+
+function loadAnalytics() {
+  // Nothing to load yet. For Google Analytics, add the gtag.js script and
+  // the gtag('config', ...) call here.
+}
+
+function saveConsent(value) {
+  try {
+    localStorage.setItem('koinonia-consent', value);
+  } catch (error) {}
+}
+
+function getSavedConsent() {
+  try {
+    const saved = localStorage.getItem('koinonia-consent');
+    return saved === 'granted' || saved === 'denied' ? saved : null;
+  } catch (error) {
+    return null;
+  }
+}
+
+function setupCookieConsent() {
+  let banner = null;
+  let analyticsLoaded = false;
+
+  function applyConsent(value) {
+    saveConsent(value);
+    if (value === 'granted' && !analyticsLoaded) {
+      analyticsLoaded = true;
+      loadAnalytics();
+    }
+    closeBanner();
+  }
+
+  function closeBanner() {
+    if (banner) banner.remove();
+    banner = null;
+  }
+
+  function fillBannerText() {
+    banner.setAttribute('aria-label', translate('Cookie-Einstellungen', 'Cookie settings'));
+    banner.querySelector('.consent__text').textContent = translate(
+      'Wir würden gerne anonyme Statistiken erfassen, um unsere Website zu verbessern. Das geschieht nur mit Ihrer Einwilligung. Sie können sie jederzeit widerrufen.',
+      'We would like to collect anonymous statistics to improve our website. This only happens with your consent, which you can withdraw at any time.'
+    );
+    banner.querySelector('.consent__link').textContent = translate('Datenschutz', 'Privacy policy');
+    banner.querySelector('[data-consent="denied"]').textContent = translate('Ablehnen', 'Decline');
+    banner.querySelector('[data-consent="granted"]').textContent = translate('Akzeptieren', 'Accept');
+  }
+
+  function openBanner() {
+    if (banner) return;
+
+    banner = document.createElement('div');
+    banner.className = 'consent';
+    banner.setAttribute('role', 'dialog');
+    banner.innerHTML =
+      '<p><span class="consent__text"></span> <a class="consent__link" href="datenschutz.html"></a></p>' +
+      '<div class="consent__buttons">' +
+        '<button type="button" class="btn btn--light" data-consent="denied"></button>' +
+        '<button type="button" class="btn" data-consent="granted"></button>' +
+      '</div>';
+
+    banner.addEventListener('click', (event) => {
+      const button = event.target.closest('[data-consent]');
+      if (button) applyConsent(button.dataset.consent);
+    });
+
+    fillBannerText();
+    document.body.append(banner);
+  }
+
+  // Footer link to reopen the banner. Declining and accepting are equally
+  // easy, and so is changing the decision later.
+  const privacyLink = document.querySelector('.footer__bottom a[href="datenschutz.html"]');
+  if (privacyLink) {
+    const settingsButton = document.createElement('button');
+    settingsButton.type = 'button';
+    settingsButton.className = 'footer__link-button';
+    settingsButton.addEventListener('click', openBanner);
+
+    function updateSettingsLabel() {
+      settingsButton.textContent = translate('Cookie-Einstellungen', 'Cookie settings');
+    }
+    updateSettingsLabel();
+    onLanguageChange(updateSettingsLabel);
+
+    privacyLink.after(' · ', settingsButton);
+  }
+
+  onLanguageChange(() => {
+    if (banner) fillBannerText();
+  });
+
+  const saved = getSavedConsent();
+  if (saved === 'granted') {
+    analyticsLoaded = true;
+    loadAnalytics();
+  } else if (saved === null) {
+    openBanner();
+  }
+}
+
+
 /* ---------- The year in the footer's copyright line ---------- */
 function showCurrentYear() {
   const year = document.getElementById('year');
@@ -358,3 +468,4 @@ setupScrollReveal();
 setupMap();
 markTodayInOpeningHours();
 showCurrentYear();
+setupCookieConsent();

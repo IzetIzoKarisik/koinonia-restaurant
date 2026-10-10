@@ -833,6 +833,36 @@ body.nav-open { position: fixed; left: 0; right: 0; width: 100%; }
 .footer__bottom a { color: #7d746c; text-decoration: none; }
 .footer__bottom a:hover { color: var(--gold); }
 
+/* ---------- Cookie consent banner ----------
+   Built by main.js. Both buttons look equally prominent on purpose. */
+.consent {
+  position: fixed; z-index: 200;
+  left: 1rem; right: 1rem; bottom: 1rem;
+  max-width: 62rem; margin-inline: auto;
+  display: flex; align-items: center; gap: 1.5rem;
+  padding: 1.25rem 1.5rem;
+  background: var(--ink); color: #d9d1c8;
+  border: 1px solid var(--ink-line); border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  font-size: .92rem;
+}
+.consent p { margin: 0; flex: 1; }
+.consent a { color: #fff; }
+.consent a:hover { color: var(--gold); }
+.consent__buttons { display: flex; gap: .75rem; flex: none; }
+.consent .btn { justify-content: center; padding: .85rem 1.4rem; }
+@media (max-width: 640px) {
+  .consent { flex-direction: column; align-items: stretch; gap: 1rem; }
+  .consent__buttons .btn { flex: 1; }
+}
+
+/* Footer button that looks like the links next to it. */
+.footer__link-button {
+  background: none; border: 0; padding: 0;
+  font: inherit; color: #7d746c; cursor: pointer;
+}
+.footer__link-button:hover { color: var(--gold); }
+
 /* ---------- Scroll reveal ----------
    main.js adds .is-visible once an element scrolls into view. */
 .reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
@@ -851,6 +881,6 @@ body.nav-open { position: fixed; left: 0; right: 0; width: 100%; }
 
 /* ---------- Print ---------- */
 @media print {
-  .header, .hero__dots, .footer, .cta-band, .nav-toggle, .lang { display: none !important; }
+  .header, .hero__dots, .footer, .cta-band, .nav-toggle, .lang, .consent { display: none !important; }
   body { background: #fff; color: #000; }
 }
